@@ -1,0 +1,13 @@
+{
+  "citations": 0,
+  "unique_cited": 0,
+  "unknown_ids": [],
+  "citation_validity": null,
+  "times_outside_events": [
+    "00:00:03"
+  ],
+  "valid": true,
+  "retried": true,
+  "latency_s": 24.9,
+  "model": "Qwen/Qwen2.5-14B-Instruct"
+}

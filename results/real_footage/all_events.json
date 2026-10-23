@@ -1,0 +1,3256 @@
+[
+  {
+    "event_id": "E1",
+    "video_id": "PETS09-S2L1",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      3
+    ],
+    "zone": "Restricted",
+    "start_ts": 0.0,
+    "end_ts": 1.29,
+    "confidence": 0.897,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E1.jpg",
+    "details": {
+      "duration_s": 1.29
+    }
+  },
+  {
+    "event_id": "E3",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      3
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.0,
+    "end_ts": 31.0,
+    "confidence": 0.855,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E3.jpg",
+    "details": {
+      "duration_s": 31.0
+    }
+  },
+  {
+    "event_id": "E4",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      1
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.0,
+    "end_ts": 113.43,
+    "confidence": 0.878,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E4.jpg",
+    "details": {
+      "duration_s": 113.43
+    }
+  },
+  {
+    "event_id": "E9",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Plaza",
+    "start_ts": 3.43,
+    "end_ts": 17.29,
+    "confidence": 0.86,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E9.jpg",
+    "details": {
+      "duration_s": 13.86
+    }
+  },
+  {
+    "event_id": "E11",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      12
+    ],
+    "zone": "Plaza",
+    "start_ts": 4.29,
+    "end_ts": 17.86,
+    "confidence": 0.873,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E11.jpg",
+    "details": {
+      "duration_s": 13.57
+    }
+  },
+  {
+    "event_id": "E2",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      2
+    ],
+    "zone": "Entry line",
+    "start_ts": 6.57,
+    "end_ts": 6.57,
+    "confidence": 0.884,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E2.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E5",
+    "video_id": "PETS09-S2L1",
+    "type": "CROWDING",
+    "object_class": "person",
+    "track_ids": [
+      1,
+      2,
+      3,
+      7,
+      12,
+      26,
+      34,
+      53,
+      54
+    ],
+    "zone": "Plaza",
+    "start_ts": 7.43,
+    "end_ts": 17.86,
+    "confidence": 0.853,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E5.jpg",
+    "details": {
+      "max_count": 7,
+      "duration_s": 10.43
+    }
+  },
+  {
+    "event_id": "E13",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      26
+    ],
+    "zone": "Plaza",
+    "start_ts": 7.43,
+    "end_ts": 18.14,
+    "confidence": 0.888,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E13.jpg",
+    "details": {
+      "duration_s": 10.71
+    }
+  },
+  {
+    "event_id": "E14",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      34
+    ],
+    "zone": "Plaza",
+    "start_ts": 8.57,
+    "end_ts": 27.71,
+    "confidence": 0.835,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E14.jpg",
+    "details": {
+      "duration_s": 19.14
+    }
+  },
+  {
+    "event_id": "E6",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      12
+    ],
+    "zone": "Entry line",
+    "start_ts": 11.14,
+    "end_ts": 11.14,
+    "confidence": 0.868,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E6.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E7",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Entry line",
+    "start_ts": 11.43,
+    "end_ts": 11.43,
+    "confidence": 0.848,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E7.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E8",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      26
+    ],
+    "zone": "Entry line",
+    "start_ts": 13.14,
+    "end_ts": 13.14,
+    "confidence": 0.904,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E8.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E10",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      34
+    ],
+    "zone": "Entry line",
+    "start_ts": 14.29,
+    "end_ts": 14.29,
+    "confidence": 0.901,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E10.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E12",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      3
+    ],
+    "zone": "Entry line",
+    "start_ts": 14.57,
+    "end_ts": 14.57,
+    "confidence": 0.785,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E12.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E17",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      53
+    ],
+    "zone": "Plaza",
+    "start_ts": 17.57,
+    "end_ts": 27.71,
+    "confidence": 0.851,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E17.jpg",
+    "details": {
+      "duration_s": 10.14
+    }
+  },
+  {
+    "event_id": "E15",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      1
+    ],
+    "zone": "Entry line",
+    "start_ts": 21.14,
+    "end_ts": 21.14,
+    "confidence": 0.873,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E15.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E16",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      53
+    ],
+    "zone": "Entry line",
+    "start_ts": 21.29,
+    "end_ts": 21.29,
+    "confidence": 0.686,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E16.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E18",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      3
+    ],
+    "zone": "Entry line",
+    "start_ts": 29.57,
+    "end_ts": 29.57,
+    "confidence": 0.886,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E18.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E21",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      148
+    ],
+    "zone": "Plaza",
+    "start_ts": 30.71,
+    "end_ts": 54.71,
+    "confidence": 0.88,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E21.jpg",
+    "details": {
+      "duration_s": 24.0
+    }
+  },
+  {
+    "event_id": "E23",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      152
+    ],
+    "zone": "Plaza",
+    "start_ts": 32.86,
+    "end_ts": 73.29,
+    "confidence": 0.875,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E23.jpg",
+    "details": {
+      "duration_s": 40.43
+    }
+  },
+  {
+    "event_id": "E24",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      153
+    ],
+    "zone": "Plaza",
+    "start_ts": 34.14,
+    "end_ts": 56.57,
+    "confidence": 0.878,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E24.jpg",
+    "details": {
+      "duration_s": 22.43
+    }
+  },
+  {
+    "event_id": "E19",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      152
+    ],
+    "zone": "Entry line",
+    "start_ts": 36.57,
+    "end_ts": 36.57,
+    "confidence": 0.862,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E19.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E28",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      12
+    ],
+    "zone": "Plaza",
+    "start_ts": 37.29,
+    "end_ts": 49.14,
+    "confidence": 0.862,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E28.jpg",
+    "details": {
+      "duration_s": 11.85
+    }
+  },
+  {
+    "event_id": "E22",
+    "video_id": "PETS09-S2L1",
+    "type": "CROWDING",
+    "object_class": "person",
+    "track_ids": [
+      1,
+      7,
+      12,
+      148,
+      152,
+      153
+    ],
+    "zone": "Plaza",
+    "start_ts": 37.86,
+    "end_ts": 49.14,
+    "confidence": 0.869,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E22.jpg",
+    "details": {
+      "max_count": 6,
+      "duration_s": 11.28
+    }
+  },
+  {
+    "event_id": "E29",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Plaza",
+    "start_ts": 37.86,
+    "end_ts": 50.43,
+    "confidence": 0.871,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E29.jpg",
+    "details": {
+      "duration_s": 12.57
+    }
+  },
+  {
+    "event_id": "E20",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      1
+    ],
+    "zone": "Entry line",
+    "start_ts": 40.43,
+    "end_ts": 40.43,
+    "confidence": 0.902,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E20.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E25",
+    "video_id": "PETS09-S2L1",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      153
+    ],
+    "zone": "Restricted",
+    "start_ts": 43.43,
+    "end_ts": 44.71,
+    "confidence": 0.875,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E25.jpg",
+    "details": {
+      "duration_s": 1.28
+    }
+  },
+  {
+    "event_id": "E26",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Entry line",
+    "start_ts": 46.57,
+    "end_ts": 46.57,
+    "confidence": 0.859,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E26.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E27",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      12
+    ],
+    "zone": "Entry line",
+    "start_ts": 46.71,
+    "end_ts": 46.71,
+    "confidence": 0.839,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E27.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E30",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      148
+    ],
+    "zone": "Entry line",
+    "start_ts": 49.86,
+    "end_ts": 49.86,
+    "confidence": 0.898,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E30.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E31",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      152
+    ],
+    "zone": "Entry line",
+    "start_ts": 56.29,
+    "end_ts": 56.29,
+    "confidence": 0.913,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E31.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E32",
+    "video_id": "PETS09-S2L1",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      152
+    ],
+    "zone": "Restricted",
+    "start_ts": 57.14,
+    "end_ts": 64.29,
+    "confidence": 0.88,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E32.jpg",
+    "details": {
+      "duration_s": 7.15
+    }
+  },
+  {
+    "event_id": "E34",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      174
+    ],
+    "zone": "Plaza",
+    "start_ts": 61.86,
+    "end_ts": 78.71,
+    "confidence": 0.877,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E34.jpg",
+    "details": {
+      "duration_s": 16.85
+    }
+  },
+  {
+    "event_id": "E33",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      1
+    ],
+    "zone": "Entry line",
+    "start_ts": 65.43,
+    "end_ts": 65.43,
+    "confidence": 0.892,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E33.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E36",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      175
+    ],
+    "zone": "Plaza",
+    "start_ts": 67.43,
+    "end_ts": 88.57,
+    "confidence": 0.874,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E36.jpg",
+    "details": {
+      "duration_s": 21.14
+    }
+  },
+  {
+    "event_id": "E35",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      174
+    ],
+    "zone": "Entry line",
+    "start_ts": 73.14,
+    "end_ts": 73.14,
+    "confidence": 0.873,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E35.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E39",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      180
+    ],
+    "zone": "Plaza",
+    "start_ts": 74.0,
+    "end_ts": 86.0,
+    "confidence": 0.87,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E39.jpg",
+    "details": {
+      "duration_s": 12.0
+    }
+  },
+  {
+    "event_id": "E37",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      180
+    ],
+    "zone": "Entry line",
+    "start_ts": 77.71,
+    "end_ts": 77.71,
+    "confidence": 0.89,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E37.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E38",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      175
+    ],
+    "zone": "Entry line",
+    "start_ts": 78.0,
+    "end_ts": 78.0,
+    "confidence": 0.713,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E38.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E42",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      206
+    ],
+    "zone": "Plaza",
+    "start_ts": 83.29,
+    "end_ts": 113.43,
+    "confidence": 0.886,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E42.jpg",
+    "details": {
+      "duration_s": 30.14
+    }
+  },
+  {
+    "event_id": "E43",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      181
+    ],
+    "zone": "Plaza",
+    "start_ts": 83.43,
+    "end_ts": 113.43,
+    "confidence": 0.866,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E43.jpg",
+    "details": {
+      "duration_s": 30.0
+    }
+  },
+  {
+    "event_id": "E40",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      180
+    ],
+    "zone": "Entry line",
+    "start_ts": 84.57,
+    "end_ts": 84.57,
+    "confidence": 0.864,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E40.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E41",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      206
+    ],
+    "zone": "Entry line",
+    "start_ts": 88.29,
+    "end_ts": 88.29,
+    "confidence": 0.897,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E41.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E47",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      212
+    ],
+    "zone": "Plaza",
+    "start_ts": 90.14,
+    "end_ts": 101.0,
+    "confidence": 0.842,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E47.jpg",
+    "details": {
+      "duration_s": 10.86
+    }
+  },
+  {
+    "event_id": "E50",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      175
+    ],
+    "zone": "Plaza",
+    "start_ts": 92.14,
+    "end_ts": 113.43,
+    "confidence": 0.878,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E50.jpg",
+    "details": {
+      "duration_s": 21.29
+    }
+  },
+  {
+    "event_id": "E44",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      181
+    ],
+    "zone": "Entry line",
+    "start_ts": 94.43,
+    "end_ts": 94.43,
+    "confidence": 0.852,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E44.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E46",
+    "video_id": "PETS09-S2L1",
+    "type": "CROWDING",
+    "object_class": "person",
+    "track_ids": [
+      1,
+      175,
+      181,
+      190,
+      206,
+      212,
+      235,
+      252
+    ],
+    "zone": "Plaza",
+    "start_ts": 94.71,
+    "end_ts": 103.14,
+    "confidence": 0.863,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E46.jpg",
+    "details": {
+      "max_count": 7,
+      "duration_s": 8.43
+    }
+  },
+  {
+    "event_id": "E45",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      1
+    ],
+    "zone": "Entry line",
+    "start_ts": 96.0,
+    "end_ts": 96.0,
+    "confidence": 0.896,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E45.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E48",
+    "video_id": "PETS09-S2L1",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      235
+    ],
+    "zone": "Restricted",
+    "start_ts": 99.71,
+    "end_ts": 100.86,
+    "confidence": 0.881,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E48.jpg",
+    "details": {
+      "duration_s": 1.15
+    }
+  },
+  {
+    "event_id": "E59",
+    "video_id": "PETS09-S2L1",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      252
+    ],
+    "zone": "Plaza",
+    "start_ts": 100.43,
+    "end_ts": 113.43,
+    "confidence": 0.868,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E59.jpg",
+    "details": {
+      "duration_s": 13.0
+    }
+  },
+  {
+    "event_id": "E49",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      175
+    ],
+    "zone": "Entry line",
+    "start_ts": 101.71,
+    "end_ts": 101.71,
+    "confidence": 0.744,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E49.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E51",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      235
+    ],
+    "zone": "Entry line",
+    "start_ts": 102.43,
+    "end_ts": 102.43,
+    "confidence": 0.875,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E51.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E52",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      206
+    ],
+    "zone": "Entry line",
+    "start_ts": 104.29,
+    "end_ts": 104.29,
+    "confidence": 0.89,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E52.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E53",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      181
+    ],
+    "zone": "Entry line",
+    "start_ts": 105.57,
+    "end_ts": 105.57,
+    "confidence": 0.899,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E53.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E54",
+    "video_id": "PETS09-S2L1",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      190
+    ],
+    "zone": "Restricted",
+    "start_ts": 105.71,
+    "end_ts": 107.14,
+    "confidence": 0.884,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E54.jpg",
+    "details": {
+      "duration_s": 1.43
+    }
+  },
+  {
+    "event_id": "E57",
+    "video_id": "PETS09-S2L1",
+    "type": "CROWDING",
+    "object_class": "person",
+    "track_ids": [
+      1,
+      175,
+      181,
+      190,
+      206,
+      212,
+      252
+    ],
+    "zone": "Plaza",
+    "start_ts": 105.71,
+    "end_ts": 113.43,
+    "confidence": 0.879,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E57.jpg",
+    "details": {
+      "max_count": 7,
+      "duration_s": 7.72
+    }
+  },
+  {
+    "event_id": "E55",
+    "video_id": "PETS09-S2L1",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      181
+    ],
+    "zone": "Restricted",
+    "start_ts": 106.14,
+    "end_ts": 110.29,
+    "confidence": 0.895,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E55.jpg",
+    "details": {
+      "duration_s": 4.15
+    }
+  },
+  {
+    "event_id": "E56",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      252
+    ],
+    "zone": "Entry line",
+    "start_ts": 107.57,
+    "end_ts": 107.57,
+    "confidence": 0.884,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E56.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E58",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      190
+    ],
+    "zone": "Entry line",
+    "start_ts": 109.0,
+    "end_ts": 109.0,
+    "confidence": 0.672,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E58.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E60",
+    "video_id": "PETS09-S2L1",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      1
+    ],
+    "zone": "Entry line",
+    "start_ts": 111.57,
+    "end_ts": 111.57,
+    "confidence": 0.871,
+    "snapshot": "/content/outputs/PETS09-S2L1/snapshots/E60.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E64",
+    "video_id": "Venice-2",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      14
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 14.27,
+    "confidence": 0.428,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E64.jpg",
+    "details": {
+      "duration_s": 14.2
+    }
+  },
+  {
+    "event_id": "E61",
+    "video_id": "Venice-2",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      12
+    ],
+    "zone": "Entry line",
+    "start_ts": 0.47,
+    "end_ts": 0.47,
+    "confidence": 0.365,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E61.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E62",
+    "video_id": "Venice-2",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      8
+    ],
+    "zone": "Entry line",
+    "start_ts": 3.57,
+    "end_ts": 3.57,
+    "confidence": 0.838,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E62.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E66",
+    "video_id": "Venice-2",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      145
+    ],
+    "zone": "Plaza",
+    "start_ts": 3.77,
+    "end_ts": 19.97,
+    "confidence": 0.68,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E66.jpg",
+    "details": {
+      "duration_s": 16.2
+    }
+  },
+  {
+    "event_id": "E63",
+    "video_id": "Venice-2",
+    "type": "CROWDING",
+    "object_class": "person",
+    "track_ids": [
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      14,
+      21,
+      33,
+      64,
+      108,
+      145,
+      161,
+      171,
+      174,
+      176,
+      182,
+      183,
+      191,
+      211,
+      249,
+      279,
+      310,
+      380,
+      401,
+      427,
+      459,
+      488,
+      498,
+      518,
+      584,
+      597,
+      620,
+      673,
+      704,
+      716,
+      735,
+      736,
+      771,
+      819,
+      884,
+      895
+    ],
+    "zone": "Plaza",
+    "start_ts": 4.87,
+    "end_ts": 19.97,
+    "confidence": 0.717,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E63.jpg",
+    "details": {
+      "max_count": 13,
+      "duration_s": 15.1
+    }
+  },
+  {
+    "event_id": "E69",
+    "video_id": "Venice-2",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      64
+    ],
+    "zone": "Plaza",
+    "start_ts": 5.97,
+    "end_ts": 19.97,
+    "confidence": 0.75,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E69.jpg",
+    "details": {
+      "duration_s": 14.0
+    }
+  },
+  {
+    "event_id": "E65",
+    "video_id": "Venice-2",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      310
+    ],
+    "zone": "Entry line",
+    "start_ts": 11.07,
+    "end_ts": 11.07,
+    "confidence": 0.603,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E65.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E67",
+    "video_id": "Venice-2",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      310
+    ],
+    "zone": "Entry line",
+    "start_ts": 14.67,
+    "end_ts": 14.67,
+    "confidence": 0.878,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E67.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E70",
+    "video_id": "Venice-2",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      33
+    ],
+    "zone": "Restricted",
+    "start_ts": 15.57,
+    "end_ts": 16.67,
+    "confidence": 0.901,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E70.jpg",
+    "details": {
+      "duration_s": 1.1
+    }
+  },
+  {
+    "event_id": "E71",
+    "video_id": "Venice-2",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      183
+    ],
+    "zone": "Restricted",
+    "start_ts": 15.57,
+    "end_ts": 16.77,
+    "confidence": 0.763,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E71.jpg",
+    "details": {
+      "duration_s": 1.2
+    }
+  },
+  {
+    "event_id": "E68",
+    "video_id": "Venice-2",
+    "type": "LINE_CROSSING",
+    "object_class": "bicycle",
+    "track_ids": [
+      346
+    ],
+    "zone": "Entry line",
+    "start_ts": 15.97,
+    "end_ts": 15.97,
+    "confidence": 0.881,
+    "snapshot": "/content/outputs/Venice-2/snapshots/E68.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E79",
+    "video_id": "ADL-Rundle-6",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 12.67,
+    "confidence": 0.838,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E79.jpg",
+    "details": {
+      "duration_s": 12.6
+    }
+  },
+  {
+    "event_id": "E80",
+    "video_id": "ADL-Rundle-6",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.87,
+    "end_ts": 15.87,
+    "confidence": 0.831,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E80.jpg",
+    "details": {
+      "duration_s": 15.0
+    }
+  },
+  {
+    "event_id": "E82",
+    "video_id": "ADL-Rundle-6",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      2
+    ],
+    "zone": "Plaza",
+    "start_ts": 1.57,
+    "end_ts": 13.27,
+    "confidence": 0.85,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E82.jpg",
+    "details": {
+      "duration_s": 11.7
+    }
+  },
+  {
+    "event_id": "E73",
+    "video_id": "ADL-Rundle-6",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      26
+    ],
+    "zone": "Restricted",
+    "start_ts": 4.87,
+    "end_ts": 5.97,
+    "confidence": 0.893,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E73.jpg",
+    "details": {
+      "duration_s": 1.1
+    }
+  },
+  {
+    "event_id": "E74",
+    "video_id": "ADL-Rundle-6",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Restricted",
+    "start_ts": 4.97,
+    "end_ts": 8.07,
+    "confidence": 0.87,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E74.jpg",
+    "details": {
+      "duration_s": 3.1
+    }
+  },
+  {
+    "event_id": "E72",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      2
+    ],
+    "zone": "Entry line",
+    "start_ts": 5.77,
+    "end_ts": 5.77,
+    "confidence": 0.82,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E72.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E75",
+    "video_id": "ADL-Rundle-6",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      170
+    ],
+    "zone": "Restricted",
+    "start_ts": 7.07,
+    "end_ts": 8.67,
+    "confidence": 0.919,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E75.jpg",
+    "details": {
+      "duration_s": 1.6
+    }
+  },
+  {
+    "event_id": "E76",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Entry line",
+    "start_ts": 9.07,
+    "end_ts": 9.07,
+    "confidence": 0.905,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E76.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E77",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      106
+    ],
+    "zone": "Entry line",
+    "start_ts": 9.77,
+    "end_ts": 9.77,
+    "confidence": 0.77,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E77.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E78",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      102
+    ],
+    "zone": "Entry line",
+    "start_ts": 9.97,
+    "end_ts": 9.97,
+    "confidence": 0.834,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E78.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E81",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      218
+    ],
+    "zone": "Entry line",
+    "start_ts": 11.17,
+    "end_ts": 11.17,
+    "confidence": 0.914,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E81.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E83",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Entry line",
+    "start_ts": 12.17,
+    "end_ts": 12.17,
+    "confidence": 0.527,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E83.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E84",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      106
+    ],
+    "zone": "Entry line",
+    "start_ts": 12.47,
+    "end_ts": 12.47,
+    "confidence": 0.765,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E84.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E85",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      172
+    ],
+    "zone": "Entry line",
+    "start_ts": 13.27,
+    "end_ts": 13.27,
+    "confidence": 0.892,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E85.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E86",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      170
+    ],
+    "zone": "Entry line",
+    "start_ts": 14.17,
+    "end_ts": 14.17,
+    "confidence": 0.703,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E86.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E88",
+    "video_id": "ADL-Rundle-6",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      317
+    ],
+    "zone": "Restricted",
+    "start_ts": 16.27,
+    "end_ts": 17.37,
+    "confidence": 0.913,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E88.jpg",
+    "details": {
+      "duration_s": 1.1
+    }
+  },
+  {
+    "event_id": "E87",
+    "video_id": "ADL-Rundle-6",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      316
+    ],
+    "zone": "Entry line",
+    "start_ts": 16.97,
+    "end_ts": 16.97,
+    "confidence": 0.867,
+    "snapshot": "/content/outputs/ADL-Rundle-6/snapshots/E87.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E93",
+    "video_id": "KITTI-17",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Plaza",
+    "start_ts": 1.5,
+    "end_ts": 14.4,
+    "confidence": 0.856,
+    "snapshot": "/content/outputs/KITTI-17/snapshots/E93.jpg",
+    "details": {
+      "duration_s": 12.9
+    }
+  },
+  {
+    "event_id": "E89",
+    "video_id": "KITTI-17",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      3
+    ],
+    "zone": "Restricted",
+    "start_ts": 2.7,
+    "end_ts": 3.7,
+    "confidence": 0.816,
+    "snapshot": "/content/outputs/KITTI-17/snapshots/E89.jpg",
+    "details": {
+      "duration_s": 1.0
+    }
+  },
+  {
+    "event_id": "E90",
+    "video_id": "KITTI-17",
+    "type": "CROWDING",
+    "object_class": "person",
+    "track_ids": [
+      2,
+      3,
+      5,
+      6,
+      7,
+      9,
+      53,
+      68
+    ],
+    "zone": "Plaza",
+    "start_ts": 3.0,
+    "end_ts": 6.0,
+    "confidence": 0.823,
+    "snapshot": "/content/outputs/KITTI-17/snapshots/E90.jpg",
+    "details": {
+      "max_count": 7,
+      "duration_s": 3.0
+    }
+  },
+  {
+    "event_id": "E91",
+    "video_id": "KITTI-17",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Entry line",
+    "start_ts": 9.8,
+    "end_ts": 9.8,
+    "confidence": 0.91,
+    "snapshot": "/content/outputs/KITTI-17/snapshots/E91.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E92",
+    "video_id": "KITTI-17",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Restricted",
+    "start_ts": 10.0,
+    "end_ts": 11.1,
+    "confidence": 0.913,
+    "snapshot": "/content/outputs/KITTI-17/snapshots/E92.jpg",
+    "details": {
+      "duration_s": 1.1
+    }
+  },
+  {
+    "event_id": "E94",
+    "video_id": "KITTI-17",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      6
+    ],
+    "zone": "Entry line",
+    "start_ts": 11.9,
+    "end_ts": 11.9,
+    "confidence": 0.886,
+    "snapshot": "/content/outputs/KITTI-17/snapshots/E94.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E95",
+    "video_id": "KITTI-17",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      9
+    ],
+    "zone": "Entry line",
+    "start_ts": 13.1,
+    "end_ts": 13.1,
+    "confidence": 0.896,
+    "snapshot": "/content/outputs/KITTI-17/snapshots/E95.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E96",
+    "video_id": "KITTI-17",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      6
+    ],
+    "zone": "Restricted",
+    "start_ts": 13.1,
+    "end_ts": 14.3,
+    "confidence": 0.885,
+    "snapshot": "/content/outputs/KITTI-17/snapshots/E96.jpg",
+    "details": {
+      "duration_s": 1.2
+    }
+  },
+  {
+    "event_id": "E98",
+    "video_id": "TUD-Stadtmitte",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      9
+    ],
+    "zone": "Restricted",
+    "start_ts": 0.04,
+    "end_ts": 7.08,
+    "confidence": 0.879,
+    "snapshot": "/content/outputs/TUD-Stadtmitte/snapshots/E98.jpg",
+    "details": {
+      "duration_s": 7.04
+    }
+  },
+  {
+    "event_id": "E101",
+    "video_id": "TUD-Stadtmitte",
+    "type": "CROWDING",
+    "object_class": "person",
+    "track_ids": [
+      2,
+      4,
+      5,
+      6,
+      9,
+      23,
+      31,
+      49,
+      54,
+      67
+    ],
+    "zone": "Plaza",
+    "start_ts": 1.0,
+    "end_ts": 4.52,
+    "confidence": 0.862,
+    "snapshot": "/content/outputs/TUD-Stadtmitte/snapshots/E101.jpg",
+    "details": {
+      "max_count": 6,
+      "duration_s": 3.52
+    }
+  },
+  {
+    "event_id": "E97",
+    "video_id": "TUD-Stadtmitte",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      6
+    ],
+    "zone": "Entry line",
+    "start_ts": 1.08,
+    "end_ts": 1.08,
+    "confidence": 0.75,
+    "snapshot": "/content/outputs/TUD-Stadtmitte/snapshots/E97.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E99",
+    "video_id": "TUD-Stadtmitte",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      49
+    ],
+    "zone": "Entry line",
+    "start_ts": 2.6,
+    "end_ts": 2.6,
+    "confidence": 0.902,
+    "snapshot": "/content/outputs/TUD-Stadtmitte/snapshots/E99.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E100",
+    "video_id": "TUD-Stadtmitte",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      31
+    ],
+    "zone": "Entry line",
+    "start_ts": 3.32,
+    "end_ts": 3.32,
+    "confidence": 0.865,
+    "snapshot": "/content/outputs/TUD-Stadtmitte/snapshots/E100.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E102",
+    "video_id": "TUD-Stadtmitte",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      49
+    ],
+    "zone": "Restricted",
+    "start_ts": 5.56,
+    "end_ts": 7.08,
+    "confidence": 0.903,
+    "snapshot": "/content/outputs/TUD-Stadtmitte/snapshots/E102.jpg",
+    "details": {
+      "duration_s": 1.52
+    }
+  },
+  {
+    "event_id": "E103",
+    "video_id": "TUD-Stadtmitte",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      49
+    ],
+    "zone": "Entry line",
+    "start_ts": 6.76,
+    "end_ts": 6.76,
+    "confidence": 0.901,
+    "snapshot": "/content/outputs/TUD-Stadtmitte/snapshots/E103.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E108",
+    "video_id": "MOT16-02",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 11.47,
+    "confidence": 0.654,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E108.jpg",
+    "details": {
+      "duration_s": 11.4
+    }
+  },
+  {
+    "event_id": "E109",
+    "video_id": "MOT16-02",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      16
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 10.17,
+    "confidence": 0.531,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E109.jpg",
+    "details": {
+      "duration_s": 10.1
+    }
+  },
+  {
+    "event_id": "E104",
+    "video_id": "MOT16-02",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      3
+    ],
+    "zone": "Restricted",
+    "start_ts": 3.37,
+    "end_ts": 7.67,
+    "confidence": 0.886,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E104.jpg",
+    "details": {
+      "duration_s": 4.3
+    }
+  },
+  {
+    "event_id": "E112",
+    "video_id": "MOT16-02",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      64
+    ],
+    "zone": "Plaza",
+    "start_ts": 5.97,
+    "end_ts": 19.97,
+    "confidence": 0.75,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E112.jpg",
+    "details": {
+      "duration_s": 14.0
+    }
+  },
+  {
+    "event_id": "E105",
+    "video_id": "MOT16-02",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      279
+    ],
+    "zone": "Entry line",
+    "start_ts": 8.37,
+    "end_ts": 8.37,
+    "confidence": 0.45,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E105.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E106",
+    "video_id": "MOT16-02",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      9
+    ],
+    "zone": "Entry line",
+    "start_ts": 8.87,
+    "end_ts": 8.87,
+    "confidence": 0.601,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E106.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E107",
+    "video_id": "MOT16-02",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      211
+    ],
+    "zone": "Entry line",
+    "start_ts": 10.07,
+    "end_ts": 10.07,
+    "confidence": 0.497,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E107.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E110",
+    "video_id": "MOT16-02",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      108
+    ],
+    "zone": "Entry line",
+    "start_ts": 13.67,
+    "end_ts": 13.67,
+    "confidence": 0.673,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E110.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E111",
+    "video_id": "MOT16-02",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      145
+    ],
+    "zone": "Entry line",
+    "start_ts": 14.67,
+    "end_ts": 14.67,
+    "confidence": 0.403,
+    "snapshot": "/content/outputs/MOT16-02/snapshots/E111.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E113",
+    "video_id": "MOT16-04",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Restricted",
+    "start_ts": 0.07,
+    "end_ts": 34.97,
+    "confidence": 0.858,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E113.jpg",
+    "details": {
+      "duration_s": 34.9
+    }
+  },
+  {
+    "event_id": "E114",
+    "video_id": "MOT16-04",
+    "type": "ZONE_INTRUSION",
+    "object_class": "motorcycle",
+    "track_ids": [
+      11
+    ],
+    "zone": "Restricted",
+    "start_ts": 0.07,
+    "end_ts": 16.37,
+    "confidence": 0.731,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E114.jpg",
+    "details": {
+      "duration_s": 16.3
+    }
+  },
+  {
+    "event_id": "E115",
+    "video_id": "MOT16-04",
+    "type": "ZONE_INTRUSION",
+    "object_class": "bicycle",
+    "track_ids": [
+      31
+    ],
+    "zone": "Restricted",
+    "start_ts": 0.07,
+    "end_ts": 34.97,
+    "confidence": 0.721,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E115.jpg",
+    "details": {
+      "duration_s": 34.9
+    }
+  },
+  {
+    "event_id": "E120",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Restricted",
+    "start_ts": 0.07,
+    "end_ts": 34.97,
+    "confidence": 0.858,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E120.jpg",
+    "details": {
+      "duration_s": 34.9
+    }
+  },
+  {
+    "event_id": "E121",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 34.97,
+    "confidence": 0.858,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E121.jpg",
+    "details": {
+      "duration_s": 34.9
+    }
+  },
+  {
+    "event_id": "E122",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      10
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 14.17,
+    "confidence": 0.698,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E122.jpg",
+    "details": {
+      "duration_s": 14.1
+    }
+  },
+  {
+    "event_id": "E123",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      17
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 18.57,
+    "confidence": 0.827,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E123.jpg",
+    "details": {
+      "duration_s": 18.5
+    }
+  },
+  {
+    "event_id": "E124",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      19
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 21.27,
+    "confidence": 0.507,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E124.jpg",
+    "details": {
+      "duration_s": 21.2
+    }
+  },
+  {
+    "event_id": "E125",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      29
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 13.87,
+    "confidence": 0.709,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E125.jpg",
+    "details": {
+      "duration_s": 13.8
+    }
+  },
+  {
+    "event_id": "E126",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      27
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 18.67,
+    "confidence": 0.724,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E126.jpg",
+    "details": {
+      "duration_s": 18.6
+    }
+  },
+  {
+    "event_id": "E127",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      26
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 16.37,
+    "confidence": 0.739,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E127.jpg",
+    "details": {
+      "duration_s": 16.3
+    }
+  },
+  {
+    "event_id": "E128",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      16
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 33.37,
+    "confidence": 0.544,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E128.jpg",
+    "details": {
+      "duration_s": 33.3
+    }
+  },
+  {
+    "event_id": "E129",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      22
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 20.57,
+    "confidence": 0.68,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E129.jpg",
+    "details": {
+      "duration_s": 20.5
+    }
+  },
+  {
+    "event_id": "E130",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      20
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 31.47,
+    "confidence": 0.56,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E130.jpg",
+    "details": {
+      "duration_s": 31.4
+    }
+  },
+  {
+    "event_id": "E132",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      3
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 20.67,
+    "confidence": 0.642,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E132.jpg",
+    "details": {
+      "duration_s": 20.6
+    }
+  },
+  {
+    "event_id": "E133",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      42
+    ],
+    "zone": "Plaza",
+    "start_ts": 1.07,
+    "end_ts": 34.97,
+    "confidence": 0.608,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E133.jpg",
+    "details": {
+      "duration_s": 33.9
+    }
+  },
+  {
+    "event_id": "E134",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      75
+    ],
+    "zone": "Plaza",
+    "start_ts": 1.17,
+    "end_ts": 20.67,
+    "confidence": 0.678,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E134.jpg",
+    "details": {
+      "duration_s": 19.5
+    }
+  },
+  {
+    "event_id": "E116",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      25
+    ],
+    "zone": "Entry line",
+    "start_ts": 3.47,
+    "end_ts": 3.47,
+    "confidence": 0.641,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E116.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E117",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      16
+    ],
+    "zone": "Entry line",
+    "start_ts": 4.17,
+    "end_ts": 4.17,
+    "confidence": 0.496,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E117.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E137",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      74
+    ],
+    "zone": "Plaza",
+    "start_ts": 4.67,
+    "end_ts": 34.97,
+    "confidence": 0.694,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E137.jpg",
+    "details": {
+      "duration_s": 30.3
+    }
+  },
+  {
+    "event_id": "E139",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      24
+    ],
+    "zone": "Plaza",
+    "start_ts": 5.37,
+    "end_ts": 17.17,
+    "confidence": 0.717,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E139.jpg",
+    "details": {
+      "duration_s": 11.8
+    }
+  },
+  {
+    "event_id": "E118",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      22
+    ],
+    "zone": "Entry line",
+    "start_ts": 8.87,
+    "end_ts": 8.87,
+    "confidence": 0.709,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E118.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E145",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      2
+    ],
+    "zone": "Plaza",
+    "start_ts": 9.17,
+    "end_ts": 26.77,
+    "confidence": 0.859,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E145.jpg",
+    "details": {
+      "duration_s": 17.6
+    }
+  },
+  {
+    "event_id": "E119",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      10
+    ],
+    "zone": "Entry line",
+    "start_ts": 9.27,
+    "end_ts": 9.27,
+    "confidence": 0.643,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E119.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E147",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      23
+    ],
+    "zone": "Plaza",
+    "start_ts": 10.07,
+    "end_ts": 21.27,
+    "confidence": 0.428,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E147.jpg",
+    "details": {
+      "duration_s": 11.2
+    }
+  },
+  {
+    "event_id": "E148",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      320
+    ],
+    "zone": "Plaza",
+    "start_ts": 10.17,
+    "end_ts": 20.97,
+    "confidence": 0.709,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E148.jpg",
+    "details": {
+      "duration_s": 10.8
+    }
+  },
+  {
+    "event_id": "E131",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      75
+    ],
+    "zone": "Entry line",
+    "start_ts": 10.27,
+    "end_ts": 10.27,
+    "confidence": 0.679,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E131.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E149",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      228
+    ],
+    "zone": "Plaza",
+    "start_ts": 11.27,
+    "end_ts": 31.47,
+    "confidence": 0.807,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E149.jpg",
+    "details": {
+      "duration_s": 20.2
+    }
+  },
+  {
+    "event_id": "E150",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      488
+    ],
+    "zone": "Plaza",
+    "start_ts": 11.87,
+    "end_ts": 23.57,
+    "confidence": 0.608,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E150.jpg",
+    "details": {
+      "duration_s": 11.7
+    }
+  },
+  {
+    "event_id": "E151",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      34
+    ],
+    "zone": "Plaza",
+    "start_ts": 12.27,
+    "end_ts": 32.67,
+    "confidence": 0.423,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E151.jpg",
+    "details": {
+      "duration_s": 20.4
+    }
+  },
+  {
+    "event_id": "E135",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      228
+    ],
+    "zone": "Entry line",
+    "start_ts": 12.47,
+    "end_ts": 12.47,
+    "confidence": 0.538,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E135.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E136",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      3
+    ],
+    "zone": "Entry line",
+    "start_ts": 12.97,
+    "end_ts": 12.97,
+    "confidence": 0.535,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E136.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E154",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      585
+    ],
+    "zone": "Plaza",
+    "start_ts": 13.47,
+    "end_ts": 34.97,
+    "confidence": 0.773,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E154.jpg",
+    "details": {
+      "duration_s": 21.5
+    }
+  },
+  {
+    "event_id": "E138",
+    "video_id": "MOT16-04",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      430
+    ],
+    "zone": "Restricted",
+    "start_ts": 13.87,
+    "end_ts": 17.07,
+    "confidence": 0.814,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E138.jpg",
+    "details": {
+      "duration_s": 3.2
+    }
+  },
+  {
+    "event_id": "E140",
+    "video_id": "MOT16-04",
+    "type": "ZONE_INTRUSION",
+    "object_class": "bicycle",
+    "track_ids": [
+      618
+    ],
+    "zone": "Restricted",
+    "start_ts": 14.37,
+    "end_ts": 34.37,
+    "confidence": 0.527,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E140.jpg",
+    "details": {
+      "duration_s": 20.0
+    }
+  },
+  {
+    "event_id": "E141",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      228
+    ],
+    "zone": "Entry line",
+    "start_ts": 15.67,
+    "end_ts": 15.67,
+    "confidence": 0.366,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E141.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E142",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      573
+    ],
+    "zone": "Entry line",
+    "start_ts": 15.77,
+    "end_ts": 15.77,
+    "confidence": 0.405,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E142.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E143",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      320
+    ],
+    "zone": "Entry line",
+    "start_ts": 15.87,
+    "end_ts": 15.87,
+    "confidence": 0.576,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E143.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E146",
+    "video_id": "MOT16-04",
+    "type": "ZONE_INTRUSION",
+    "object_class": "bicycle",
+    "track_ids": [
+      799
+    ],
+    "zone": "Restricted",
+    "start_ts": 18.47,
+    "end_ts": 34.17,
+    "confidence": 0.513,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E146.jpg",
+    "details": {
+      "duration_s": 15.7
+    }
+  },
+  {
+    "event_id": "E158",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      811
+    ],
+    "zone": "Plaza",
+    "start_ts": 18.77,
+    "end_ts": 34.97,
+    "confidence": 0.686,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E158.jpg",
+    "details": {
+      "duration_s": 16.2
+    }
+  },
+  {
+    "event_id": "E144",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      74
+    ],
+    "zone": "Entry line",
+    "start_ts": 18.87,
+    "end_ts": 18.87,
+    "confidence": 0.398,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E144.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E159",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      760
+    ],
+    "zone": "Plaza",
+    "start_ts": 21.17,
+    "end_ts": 33.77,
+    "confidence": 0.656,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E159.jpg",
+    "details": {
+      "duration_s": 12.6
+    }
+  },
+  {
+    "event_id": "E152",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      74
+    ],
+    "zone": "Entry line",
+    "start_ts": 22.67,
+    "end_ts": 22.67,
+    "confidence": 0.498,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E152.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E153",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      811
+    ],
+    "zone": "Entry line",
+    "start_ts": 22.87,
+    "end_ts": 22.87,
+    "confidence": 0.58,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E153.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E163",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      977
+    ],
+    "zone": "Plaza",
+    "start_ts": 23.97,
+    "end_ts": 34.57,
+    "confidence": 0.771,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E163.jpg",
+    "details": {
+      "duration_s": 10.6
+    }
+  },
+  {
+    "event_id": "E164",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      889
+    ],
+    "zone": "Plaza",
+    "start_ts": 24.27,
+    "end_ts": 34.97,
+    "confidence": 0.836,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E164.jpg",
+    "details": {
+      "duration_s": 10.7
+    }
+  },
+  {
+    "event_id": "E165",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      891
+    ],
+    "zone": "Plaza",
+    "start_ts": 24.47,
+    "end_ts": 34.97,
+    "confidence": 0.831,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E165.jpg",
+    "details": {
+      "duration_s": 10.5
+    }
+  },
+  {
+    "event_id": "E166",
+    "video_id": "MOT16-04",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      989
+    ],
+    "zone": "Plaza",
+    "start_ts": 24.57,
+    "end_ts": 34.97,
+    "confidence": 0.565,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E166.jpg",
+    "details": {
+      "duration_s": 10.4
+    }
+  },
+  {
+    "event_id": "E155",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      540
+    ],
+    "zone": "Entry line",
+    "start_ts": 25.47,
+    "end_ts": 25.47,
+    "confidence": 0.851,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E155.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E156",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      1018
+    ],
+    "zone": "Entry line",
+    "start_ts": 27.87,
+    "end_ts": 27.87,
+    "confidence": 0.47,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E156.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E157",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      989
+    ],
+    "zone": "Entry line",
+    "start_ts": 28.37,
+    "end_ts": 28.37,
+    "confidence": 0.559,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E157.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E160",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      585
+    ],
+    "zone": "Entry line",
+    "start_ts": 32.17,
+    "end_ts": 32.17,
+    "confidence": 0.733,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E160.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E161",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      977
+    ],
+    "zone": "Entry line",
+    "start_ts": 32.77,
+    "end_ts": 32.77,
+    "confidence": 0.78,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E161.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E162",
+    "video_id": "MOT16-04",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      1022
+    ],
+    "zone": "Entry line",
+    "start_ts": 33.27,
+    "end_ts": 33.27,
+    "confidence": 0.753,
+    "snapshot": "/content/outputs/MOT16-04/snapshots/E162.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E173",
+    "video_id": "MOT16-09",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.07,
+    "end_ts": 12.67,
+    "confidence": 0.838,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E173.jpg",
+    "details": {
+      "duration_s": 12.6
+    }
+  },
+  {
+    "event_id": "E167",
+    "video_id": "MOT16-09",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Restricted",
+    "start_ts": 0.57,
+    "end_ts": 4.97,
+    "confidence": 0.887,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E167.jpg",
+    "details": {
+      "duration_s": 4.4
+    }
+  },
+  {
+    "event_id": "E174",
+    "video_id": "MOT16-09",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Plaza",
+    "start_ts": 0.57,
+    "end_ts": 16.17,
+    "confidence": 0.833,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E174.jpg",
+    "details": {
+      "duration_s": 15.6
+    }
+  },
+  {
+    "event_id": "E177",
+    "video_id": "MOT16-09",
+    "type": "LOITERING",
+    "object_class": "person",
+    "track_ids": [
+      2
+    ],
+    "zone": "Plaza",
+    "start_ts": 1.47,
+    "end_ts": 13.27,
+    "confidence": 0.851,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E177.jpg",
+    "details": {
+      "duration_s": 11.8
+    }
+  },
+  {
+    "event_id": "E168",
+    "video_id": "MOT16-09",
+    "type": "ZONE_INTRUSION",
+    "object_class": "person",
+    "track_ids": [
+      26
+    ],
+    "zone": "Restricted",
+    "start_ts": 2.87,
+    "end_ts": 4.87,
+    "confidence": 0.901,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E168.jpg",
+    "details": {
+      "duration_s": 2.0
+    }
+  },
+  {
+    "event_id": "E169",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      2
+    ],
+    "zone": "Entry line",
+    "start_ts": 5.77,
+    "end_ts": 5.77,
+    "confidence": 0.82,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E169.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E170",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      7
+    ],
+    "zone": "Entry line",
+    "start_ts": 9.17,
+    "end_ts": 9.17,
+    "confidence": 0.907,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E170.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E171",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      106
+    ],
+    "zone": "Entry line",
+    "start_ts": 9.77,
+    "end_ts": 9.77,
+    "confidence": 0.77,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E171.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E172",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      102
+    ],
+    "zone": "Entry line",
+    "start_ts": 9.97,
+    "end_ts": 9.97,
+    "confidence": 0.834,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E172.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E175",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      196
+    ],
+    "zone": "Entry line",
+    "start_ts": 10.77,
+    "end_ts": 10.77,
+    "confidence": 0.535,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E175.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E176",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      218
+    ],
+    "zone": "Entry line",
+    "start_ts": 11.17,
+    "end_ts": 11.17,
+    "confidence": 0.914,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E176.jpg",
+    "details": {
+      "direction": "down",
+      "wrong_way": false
+    }
+  },
+  {
+    "event_id": "E178",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      5
+    ],
+    "zone": "Entry line",
+    "start_ts": 12.17,
+    "end_ts": 12.17,
+    "confidence": 0.527,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E178.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E179",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      172
+    ],
+    "zone": "Entry line",
+    "start_ts": 13.17,
+    "end_ts": 13.17,
+    "confidence": 0.91,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E179.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E180",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      170
+    ],
+    "zone": "Entry line",
+    "start_ts": 14.17,
+    "end_ts": 14.17,
+    "confidence": 0.703,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E180.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  },
+  {
+    "event_id": "E181",
+    "video_id": "MOT16-09",
+    "type": "LINE_CROSSING",
+    "object_class": "person",
+    "track_ids": [
+      316
+    ],
+    "zone": "Entry line",
+    "start_ts": 16.87,
+    "end_ts": 16.87,
+    "confidence": 0.887,
+    "snapshot": "/content/outputs/MOT16-09/snapshots/E181.jpg",
+    "details": {
+      "direction": "up",
+      "wrong_way": true
+    }
+  }
+]

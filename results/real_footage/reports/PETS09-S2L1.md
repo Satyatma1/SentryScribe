@@ -1,0 +1,42 @@
+## Summary
+The video PETS09-S2L1.mp4, which lasted 00:01:54, recorded multiple instances of zone intrusions, loitering, line crossings, and crowding involving various persons. The most frequent events were loitering and line crossings, with several individuals crossing the entry line in the wrong direction and entering restricted zones.
+
+## Timeline
+- **00:00:00** - A person (track 3) entered a restricted zone [E1].
+- **00:00:00** - Track 3 began loitering in the Plaza [E3].
+- **00:00:00** - Track 1 started loitering in the Plaza [E4].
+- **00:00:03** - Track 7 began loitering in the Plaza [E9].
+- **00:00:04** - Track 12 began loitering in the Plaza [E11].
+- **00:00:07** - Track 2 crossed the entry line going up, wrong way [E2].
+- **00:00:07** - Tracks 1, 2, 3, 7, 12, 26, 34, 53, and 54 caused crowding in the Plaza [E5].
+- **00:00:07** - Track 26 began loitering in the Plaza [E13].
+- **00:00:09** - Track 34 began loitering in the Plaza [E14].
+- **00:00:11** - Track 12 crossed the entry line going up, wrong way [E6].
+- **00:00:11** - Track 7 crossed the entry line going up, wrong way [E7].
+- **00:00:13** - Track 26 crossed the entry line going up, wrong way [E8].
+- **00:00:14** - Track 34 crossed the entry line going down, correct way [E10].
+- **00:00:15** - Track 3 crossed the entry line going up, wrong way [E12].
+- **00:00:18** - Track 53 began loitering in the Plaza [E17].
+- **00:00:21** - Track 1 crossed the entry line going down, correct way [E15].
+- **00:00:21** - Track 53 crossed the entry line going up, wrong way [E16].
+- **00:00:30** - Track 3 crossed the entry line going up, wrong way [E18].
+- **00:00:31** - Track 148 began loitering in the Plaza [E21].
+- **00:00:33** - Track 152 began loitering in the Plaza [E23].
+- **00:00:34** - Track 153 began loitering in the Plaza [E24].
+- **00:00:37** - Track 152 crossed the entry line going up, wrong way [E19].
+- **00:00:37** - Track 12 began loitering in the Plaza [E28].
+- **00:00:38** - Tracks 1, 7, 12, 148, 152, and 153 caused crowding in the Plaza [E22].
+- **00:00:38** - Track 7 began loitering in the Plaza [E29].
+- **00:00:40** - Track 1 crossed the entry line going up, wrong way [E20].
+- **00:00:43** - Track 153 entered a restricted zone [E25].
+- **00:00:47** - Track 7 crossed the entry line going down, correct way [E26].
+- **00:00:47** - Track 12 crossed the entry line going down, correct way [E27].
+- **00:00:50** - Track 148 crossed the entry line going down, correct way [E30].
+- **00:00:56** - Track 152 crossed the entry line going down, correct way [E31].
+- **00:00:57** - Track 152 entered a restricted zone [E32].
+- **00:01:02** - Track 174 began loitering in the Plaza [E34].
+- **00:01:05** - Track 1 crossed the entry line going down, correct way [E33].
+- **00:01:07** - Track 175 began loitering in the Plaza [E36].
+- **00:01:13** - Track 174 crossed the entry line going up, wrong way [E35].
+- **00:01:14** - Track 180 began loitering in the Plaza [E39].
+- **00:01:18** - Track 1

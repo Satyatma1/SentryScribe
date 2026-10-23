@@ -1,0 +1,284 @@
+{
+  "overall": {
+    "tp": 159,
+    "fp": 22,
+    "fn": 110,
+    "precision": 0.8784530386740331,
+    "recall": 0.5910780669144982,
+    "f1": 0.7066666666666668,
+    "mean_abs_start_err_s": 0.52
+  },
+  "per_type": {
+    "CROWDING": {
+      "tp": 6,
+      "fp": 1,
+      "fn": 3,
+      "precision": 0.8571428571428571,
+      "recall": 0.6666666666666666,
+      "f1": 0.75,
+      "mean_abs_start_err_s": 0.34
+    },
+    "LINE_CROSSING": {
+      "tp": 77,
+      "fp": 9,
+      "fn": 38,
+      "precision": 0.8953488372093024,
+      "recall": 0.6695652173913044,
+      "f1": 0.7661691542288558,
+      "mean_abs_start_err_s": 0.76
+    },
+    "LOITERING": {
+      "tp": 58,
+      "fp": 4,
+      "fn": 65,
+      "precision": 0.9354838709677419,
+      "recall": 0.4715447154471545,
+      "f1": 0.6270270270270271,
+      "mean_abs_start_err_s": 0.34
+    },
+    "ZONE_INTRUSION": {
+      "tp": 18,
+      "fp": 8,
+      "fn": 4,
+      "precision": 0.6923076923076923,
+      "recall": 0.8181818181818182,
+      "f1": 0.7500000000000001,
+      "mean_abs_start_err_s": 0.16
+    }
+  },
+  "videos_scored": [
+    "ADL-Rundle-6",
+    "KITTI-17",
+    "MOT16-02",
+    "MOT16-04",
+    "MOT16-09",
+    "PETS09-S2L1",
+    "TUD-Campus",
+    "TUD-Stadtmitte",
+    "Venice-2"
+  ],
+  "tolerance_s": 3.0,
+  "per_video": {
+    "ADL-Rundle-6": {
+      "tp": 16,
+      "fp": 1,
+      "fn": 5,
+      "precision": 0.9411764705882353,
+      "recall": 0.7619047619047619,
+      "f1": 0.8421052631578947,
+      "mean_abs_start_err_s": 0.55
+    },
+    "KITTI-17": {
+      "tp": 6,
+      "fp": 2,
+      "fn": 2,
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1": 0.75,
+      "mean_abs_start_err_s": 0.83
+    },
+    "MOT16-02": {
+      "tp": 8,
+      "fp": 1,
+      "fn": 42,
+      "precision": 0.8888888888888888,
+      "recall": 0.16,
+      "f1": 0.27118644067796616,
+      "mean_abs_start_err_s": 0.79
+    },
+    "MOT16-04": {
+      "tp": 47,
+      "fp": 7,
+      "fn": 36,
+      "precision": 0.8703703703703703,
+      "recall": 0.5662650602409639,
+      "f1": 0.6861313868613138,
+      "mean_abs_start_err_s": 0.5
+    },
+    "MOT16-09": {
+      "tp": 15,
+      "fp": 0,
+      "fn": 7,
+      "precision": 1.0,
+      "recall": 0.6818181818181818,
+      "f1": 0.8108108108108109,
+      "mean_abs_start_err_s": 0.6
+    },
+    "PETS09-S2L1": {
+      "tp": 56,
+      "fp": 4,
+      "fn": 7,
+      "precision": 0.9333333333333333,
+      "recall": 0.8888888888888888,
+      "f1": 0.9105691056910569,
+      "mean_abs_start_err_s": 0.43
+    },
+    "TUD-Campus": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "mean_abs_start_err_s": null
+    },
+    "TUD-Stadtmitte": {
+      "tp": 5,
+      "fp": 2,
+      "fn": 2,
+      "precision": 0.7142857142857143,
+      "recall": 0.7142857142857143,
+      "f1": 0.7142857142857143,
+      "mean_abs_start_err_s": 0.46
+    },
+    "Venice-2": {
+      "tp": 6,
+      "fp": 5,
+      "fn": 7,
+      "precision": 0.5454545454545454,
+      "recall": 0.46153846153846156,
+      "f1": 0.4999999999999999,
+      "mean_abs_start_err_s": 0.7
+    }
+  },
+  "throughput": {
+    "device": [
+      "cuda"
+    ],
+    "model": [
+      "yolov8x.pt"
+    ],
+    "mean_processing_fps": 23.82,
+    "mean_realtime_factor": 2.36,
+    "total_video_s": 248.1,
+    "total_wall_s": 103.3
+  },
+  "measured_at": "2026-10-23T10:49:45",
+  "config": {
+    "model": "yolov8x.pt",
+    "imgsz": 1280,
+    "target_fps": 10,
+    "conf": 0.2,
+    "person_vehicle_conf": 0.35,
+    "intrusion_s": 1.0,
+    "veh_ped_s": 2.0,
+    "loiter_s": 60.0,
+    "crowd_n": 10,
+    "crowd_s": 5.0,
+    "abandon_s": 30.0,
+    "abandon_radius": 0.08,
+    "stationary_tol": 0.03,
+    "stationary_window_s": 10.0,
+    "cooldown_s": 2.0,
+    "line_debounce_s": 2.0,
+    "min_track_obs": 3,
+    "stitch_gap_s": 1.5,
+    "stitch_dist": 0.05,
+    "stitch_min_obs": 10,
+    "smooth_alpha": 0.5,
+    "line_margin": 0.01,
+    "attend_min_obs": 10
+  },
+  "query_accuracy": {
+    "correct": 5,
+    "total": 6,
+    "accuracy": 0.833,
+    "mean_latency_s": 26.5
+  },
+  "report_checks": {
+    "PETS09-S2L1": {
+      "citations": 37,
+      "unique_cited": 37,
+      "unknown_ids": [],
+      "citation_validity": 1.0,
+      "times_outside_events": [],
+      "valid": true,
+      "latency_s": 112.2,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "Venice-2": {
+      "citations": 20,
+      "unique_cited": 11,
+      "unknown_ids": [],
+      "citation_validity": 1.0,
+      "times_outside_events": [],
+      "valid": true,
+      "latency_s": 68.6,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "ADL-Rundle-6": {
+      "citations": 31,
+      "unique_cited": 17,
+      "unknown_ids": [],
+      "citation_validity": 1.0,
+      "times_outside_events": [],
+      "valid": true,
+      "latency_s": 73.0,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "KITTI-17": {
+      "citations": 16,
+      "unique_cited": 8,
+      "unknown_ids": [],
+      "citation_validity": 1.0,
+      "times_outside_events": [],
+      "valid": true,
+      "latency_s": 62.0,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "TUD-Stadtmitte": {
+      "citations": 21,
+      "unique_cited": 7,
+      "unknown_ids": [],
+      "citation_validity": 1.0,
+      "times_outside_events": [],
+      "valid": true,
+      "latency_s": 52.8,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "TUD-Campus": {
+      "citations": 0,
+      "unique_cited": 0,
+      "unknown_ids": [],
+      "citation_validity": null,
+      "times_outside_events": [
+        "00:00:03"
+      ],
+      "valid": true,
+      "retried": true,
+      "latency_s": 24.9,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "MOT16-02": {
+      "citations": 18,
+      "unique_cited": 9,
+      "unknown_ids": [],
+      "citation_validity": 1.0,
+      "times_outside_events": [],
+      "valid": true,
+      "latency_s": 57.4,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "MOT16-04": {
+      "citations": 75,
+      "unique_cited": 53,
+      "unknown_ids": [],
+      "citation_validity": 1.0,
+      "times_outside_events": [],
+      "valid": true,
+      "latency_s": 110.5,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    },
+    "MOT16-09": {
+      "citations": 41,
+      "unique_cited": 15,
+      "unknown_ids": [],
+      "citation_validity": 1.0,
+      "times_outside_events": [],
+      "valid": true,
+      "latency_s": 76.4,
+      "model": "Qwen/Qwen2.5-14B-Instruct"
+    }
+  },
+  "llm_model": "Qwen/Qwen2.5-14B-Instruct"
+}
