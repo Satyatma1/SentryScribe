@@ -231,7 +231,6 @@ SentryScribe/
 
 The `notebooks/colab_demo.ipynb` notebook contains the main pipeline. The simulation script evaluates event detection, the test script checks core logic and integration behaviour, and the showcase builder generates an interactive page from the evaluation results.
 
-Keep the repository structure aligned with the files actually committed to GitHub.
 
 ## ▶️ Getting Started
 
@@ -253,7 +252,7 @@ git clone https://github.com/<your-username>/SentryScribe.git
 cd SentryScribe
 ```
 
-Replace `<your-username>` with your GitHub username.
+Replace `Satyatma1` with your GitHub username.
 
 ### 2. Open the notebook
 
