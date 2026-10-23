@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SentryScribe Project Structure</title>
+<style>
+  :root {
+    --ink: #1b2430; --muted: #5b6675; --line: #d5dbe3; --accent: #0f6e6e;
+    --cv: #e6f2f2; --logic: #eceffb; --data: #f1eef8; --llm: #fbf1e4; --app: #ebf5e8;
+    --a: #0f6e6e; --b: #4352a8; --c: #b86a12; --all: #6b7280;
+  }
+  @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); background: #fff;
+         font-size: 10.5pt; line-height: 1.5; margin: 0; }
+  h1 { font-size: 30pt; margin: 0 0 6px; letter-spacing: -0.5px; }
+  h2 { font-size: 16pt; color: var(--accent); margin: 26px 0 8px; padding-bottom: 4px;
+       border-bottom: 2px solid var(--accent); break-after: avoid; }
+  h3 { font-size: 12pt; margin: 18px 0 6px; break-after: avoid; }
+  p { margin: 6px 0; }
+  ul, ol { margin: 6px 0; padding-left: 20px; }
+  li { margin: 2px 0; }
+  code, pre { font-family: Consolas, "Courier New", monospace; font-size: 9pt; }
+  code { background: #f2f4f7; padding: 0 3px; border-radius: 3px; }
+  pre { background: #f6f8fa; border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px;
+        line-height: 1.35; white-space: pre; overflow: hidden; break-inside: avoid; margin: 8px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9.5pt; break-inside: auto; }
+  th { text-align: left; background: #eef2f5; border-bottom: 2px solid var(--line); padding: 5px 7px; }
+  td { border-bottom: 1px solid var(--line); padding: 5px 7px; vertical-align: top; }
+  tr { break-inside: avoid; }
+  figure { margin: 10px 0 14px; break-inside: avoid; }
+  figcaption { font-size: 9pt; color: var(--muted); text-align: center; margin-top: 4px; }
+  .break { break-before: page; }
+  .muted { color: var(--muted); }
+  .note { border-left: 4px solid var(--accent); background: #f0f7f7; padding: 8px 12px; margin: 10px 0;
+          border-radius: 0 6px 6px 0; break-inside: avoid; }
+  .warn { border-left-color: var(--c); background: #fdf5ea; }
+  .tag { display: inline-block; font-size: 8pt; font-weight: 600; padding: 0 6px; border-radius: 9px;
+         color: #fff; }
+  .tA { background: var(--a); } .tB { background: var(--b); } .tC { background: var(--c); } .tAll { background: var(--all); }
+  .target { color: var(--muted); font-style: italic; }
+
+  /* cover */
+  .cover { height: 250mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover .kicker { color: var(--accent); font-weight: 700; letter-spacing: 2px; font-size: 10pt; text-transform: uppercase; }
+  .cover .sub { font-size: 14pt; color: var(--muted); max-width: 150mm; }
+  .cover .meta td { border: none; padding: 3px 14px 3px 0; font-size: 10.5pt; }
+  .cover .meta td:first-child { color: var(--muted); width: 38mm; }
+  .toc { columns: 2; font-size: 10.5pt; padding-left: 18px; }
+
+  /* schema cards */
+  .schema { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 8px 0; break-inside: avoid; }
+  .schema div { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; font-size: 8.6pt; }
+  .schema b { display: block; background: var(--data); padding: 4px 8px; font-size: 9.5pt; }
+  .schema ul { list-style: none; padding: 4px 8px; margin: 0; font-family: Consolas, monospace; }
+  .schema li { margin: 1px 0; }
+  .pk { color: var(--c); } .fk { color: var(--b); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div>
+    <div class="kicker">Final-year BTech Project · LLM + Computer Vision</div>
+    <h1 style="margin-top:14mm">SentryScribe</h1>
+    <div class="sub">Turning CCTV footage into searchable events and written incident reports with
+      pretrained object detection, multi-object tracking and a grounded LLM.</div>
+    <p style="margin-top:12mm;font-size:12pt"><b>Project structure &amp; design document</b></p>
+    <table class="meta">
+      <tr><td>Version</td><td>1.0, final</td></tr>
+      <tr><td>Date</td><td>22 October 2026</td></tr>
+      <tr><td>Team</td><td>__________________________</td></tr>
+      <tr><td>Guide</td><td>__________________________</td></tr>
+      <tr><td>Status</td><td>Completed: implementation, evaluation and results</td></tr>
+    </table>
+  </div>
+  <div>
+    <p class="muted" style="font-weight:600;margin-bottom:2px">Contents</p>
+    <ol class="toc">
+      <li>Overview &amp; scope</li>
+      <li>Key design decisions</li>
+      <li>System architecture</li>
+      <li>Data flow</li>
+      <li>Event engine</li>
+      <li>LLM layer</li>
+      <li>Data model</li>
+      <li>Folder &amp; code structure</li>
+      <li>Tech stack</li>
+      <li>Datasets &amp; test videos</li>
+      <li>Evaluation</li>
+      <li>Development timeline</li>
+      <li>Risks &amp; mitigations</li>
+      <li>Extensions</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 1 OVERVIEW ============ -->
+<h2 class="break">1. Overview &amp; scope</h2>
+<p><b>Problem.</b> CCTV cameras record thousands of hours that nobody watches. When something happens,
+  security staff scrub through footage by hand, and incident write-ups are slow and inconsistent.</p>
+<p><b>Solution.</b> SentryScribe processes a video with a pretrained detector (YOLOv8) and tracker (ByteTrack).
+  A rule-based event engine turns the object tracks into timestamped <i>events</i> such as zone intrusion,
+  loitering, crowding and abandoned bags, and writes them to an event log. An LLM then
+  <b>(a)</b> writes a structured incident report from those events and <b>(b)</b> answers natural-language
+  questions about the footage (<i>"When did a truck enter Gate B?"</i>) by calling search tools over the event log.</p>
+
+<h3>What the system does</h3>
+<ul>
+  <li>Accepts uploaded video files (MP4, AVI, MOV, MKV), one clip or a whole folder per run.</li>
+  <li>Detects and tracks people, vehicles and bags frame by frame, with a stable ID for each object.</li>
+  <li>Lets the operator define <b>zones</b> (polygons) and <b>lines</b> on the camera view.</li>
+  <li>Emits six event types with timestamps, keyframe snapshots and confidence values.</li>
+  <li>Generates an incident report (Markdown) that cites event IDs and timestamps, checked by a validator.</li>
+  <li>Answers questions about the footage through search tools, citing the events it used.</li>
+  <li>Runs end to end in one Colab notebook (annotated video, event table, snapshots, report, Q&amp;A), with an interactive showcase page for the results.</li>
+</ul>
+
+<h3>Out of scope (deliberately)</h3>
+<ul>
+  <li><b>No model training.</b> Every model is used pretrained, zero-shot.</li>
+  <li><b>No face recognition or identification of individuals.</b> The system reasons about anonymous track IDs only.</li>
+  <li>No real-time alarm delivery (listed under extensions, §14).</li>
+</ul>
+
+<!-- ============ 2 DECISIONS ============ -->
+<h2>2. Key design decisions</h2>
+<table>
+  <tr><th style="width:32%">Decision</th><th>Reason</th></tr>
+  <tr><td><b>Pretrained models only</b></td>
+      <td>There is no time or GPU budget for training. YOLOv8 trained on COCO already covers person, car, truck, bus,
+          motorcycle, bicycle, backpack, handbag and suitcase, which are all the classes we need.</td></tr>
+  <tr><td><b>Events come from rules, not ML</b></td>
+      <td>Rules (geometry + time thresholds) need no training data, are explainable in a viva, and can be tuned per camera
+          from a config file.</td></tr>
+  <tr><td><b>The LLM never sees raw video</b></td>
+      <td>The LLM only receives the structured event log, so every sentence in a report can be traced back
+          to a database row. This keeps hallucinations low and makes the reports auditable.</td></tr>
+  <tr><td><b>Tool calling, not LLM-written SQL</b></td>
+      <td>The query agent can only call a fixed set of typed, parameterised functions. This is safer, and the answers are easier to test.</td></tr>
+  <tr><td><b>Open local LLM</b></td>
+      <td>An open-weights model from Hugging Face runs on the same GPU: no API key, no cost per call, and no data leaves the machine. The citation validator catches the mistakes a small model makes.</td></tr>
+  <tr><td><b>Notebook-first delivery</b></td>
+      <td>The whole pipeline runs in one Colab notebook on a free T4 GPU, so anyone can reproduce it with no local setup.
+          The simulation study executes the notebook's own cells, so the evaluated code is exactly the shipped code.</td></tr>
+</table>
+
+<!-- ============ 3 ARCHITECTURE ============ -->
+<h2>3. System architecture</h2>
+<p>The system is organised in five layers. The <b>CV layers</b> (top) run once per video as a background job and
+  produce data. The <b>LLM layer</b> and the <b>application layer</b> (bottom) run on demand and only consume data.
+  The two halves meet only at the event store.</p>
+
+<figure>
+<svg viewBox="0 0 720 600" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" >
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3b4654"/>
+    </marker>
+    <style>
+      .bx { fill: #fff; stroke: #3b4654; stroke-width: 1.2; rx: 7; }
+      .t { font-size: 12.5px; font-weight: 700; fill: #1b2430; text-anchor: middle; }
+      .s { font-size: 10px; fill: #5b6675; text-anchor: middle; }
+      .bl { font-size: 10.5px; font-weight: 700; letter-spacing: 1px; fill: #5b6675; }
+      .ln { stroke: #3b4654; stroke-width: 1.3; fill: none; }
+      .dl { stroke: #3b4654; stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; }
+    </style>
+  </defs>
+  <!-- bands -->
+  <rect x="0" y="0"   width="720" height="112" rx="8" fill="#e6f2f2"/>
+  <rect x="0" y="120" width="720" height="112" rx="8" fill="#eceffb"/>
+  <rect x="0" y="240" width="720" height="112" rx="8" fill="#f1eef8"/>
+  <rect x="0" y="360" width="720" height="116" rx="8" fill="#fbf1e4"/>
+  <rect x="0" y="484" width="720" height="112" rx="8" fill="#ebf5e8"/>
+  <text class="bl" x="20" y="20">1 · VISION PIPELINE</text>
+  <text class="bl" x="20" y="140">2 · EVENT LOGIC</text>
+  <text class="bl" x="20" y="260">3 · STORAGE</text>
+  <text class="bl" x="20" y="380">4 · LLM LAYER</text>
+  <text class="bl" x="20" y="504">5 · APPLICATION</text>
+
+  <!-- band 1 -->
+  <rect class="bx" x="21"  y="36" width="150" height="56"/><text class="t" x="96"  y="60">Video source</text><text class="s" x="96"  y="77">MP4 / AVI / MOV upload</text>
+  <rect class="bx" x="197" y="36" width="150" height="56"/><text class="t" x="272" y="60">Frame sampler</text><text class="s" x="272" y="77">vid_stride · ~10 fps</text>
+  <rect class="bx" x="373" y="36" width="150" height="56"/><text class="t" x="448" y="60">Object detector</text><text class="s" x="448" y="77">YOLOv8n / s · COCO weights</text>
+  <rect class="bx" x="549" y="36" width="150" height="56"/><text class="t" x="624" y="60">Tracker</text><text class="s" x="624" y="77">ByteTrack · stable IDs</text>
+  <path class="ln" d="M171 64 H195" marker-end="url(#ar)"/>
+  <path class="ln" d="M347 64 H371" marker-end="url(#ar)"/>
+  <path class="ln" d="M523 64 H547" marker-end="url(#ar)"/>
+
+  <!-- band 2 -->
+  <rect class="bx" x="120" y="156" width="220" height="56"/><text class="t" x="230" y="180">Scene &amp; rule config</text><text class="s" x="230" y="197">SCENES (zones, lines) · CONFIG thresholds</text>
+  <rect class="bx" x="420" y="156" width="279" height="56"/><text class="t" x="559" y="178">Event engine</text><text class="s" x="559" y="194">intrusion · loitering · crowding</text><text class="s" x="559" y="206">line-cross · abandoned object · vehicle-in-zone</text>
+  <path class="ln" d="M624 92 V154" marker-end="url(#ar)"/>
+  <text class="s" x="632" y="128" style="text-anchor:start">tracks</text>
+  <path class="ln" d="M340 184 H418" marker-end="url(#ar)"/>
+
+  <!-- band 3 -->
+  <rect class="bx" x="420" y="276" width="279" height="56"/><text class="t" x="559" y="300">Event store</text><text class="s" x="559" y="317">events.json · tracks.json · summary.json</text>
+  <rect class="bx" x="120" y="276" width="220" height="56"/><text class="t" x="230" y="300">Media outputs</text><text class="s" x="230" y="317">keyframe snapshots · annotated MP4</text>
+  <path class="ln" d="M559 212 V274" marker-end="url(#ar)"/>
+  <text class="s" x="567" y="248" style="text-anchor:start">events</text>
+  <path class="ln" d="M420 304 H342" marker-end="url(#ar)"/>
+  <text class="s" x="381" y="298">paths</text>
+
+  <!-- band 4 -->
+  <rect class="bx" x="21"  y="400" width="200" height="56"/><text class="t" x="121" y="424">Report writer</text><text class="s" x="121" y="441">events → grounded incident report</text>
+  <rect class="bx" x="250" y="400" width="200" height="56"/><text class="t" x="350" y="424">Query agent</text><text class="s" x="350" y="441">tool calls over the event store</text>
+  <rect class="bx" x="520" y="400" width="179" height="56"/><text class="t" x="609" y="424">Local LLM</text><text class="s" x="609" y="441">Qwen2.5-14B-Instruct</text>
+  <path class="ln" d="M500 332 V376 H121 V398" marker-end="url(#ar)"/>
+  <path class="ln" d="M350 376 V398" marker-end="url(#ar)"/>
+  <path class="ln" d="M452 428 H518" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <path class="dl" d="M121 456 V468 H609 V458" marker-end="url(#ar)"/>
+  <text class="s" x="485" y="420">calls</text>
+
+  <!-- band 5 -->
+  <rect class="bx" x="150" y="522" width="390" height="56"/><text class="t" x="345" y="546">Colab notebook + showcase page</text><text class="s" x="345" y="563">upload · zone preview · annotated video · events · report · Q&amp;A</text>
+  <rect class="bx" x="590" y="522" width="109" height="56"/><text class="t" x="644" y="546">Operator</text><text class="s" x="644" y="563">security staff</text>
+  <path class="ln" d="M350 520 V458" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <path class="ln" d="M200 520 V458" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <path class="ln" d="M542 550 H588" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <path class="dl" d="M150 550 H9 V64 H19" marker-end="url(#ar)"/>
+  <text class="s" x="80" y="544">starts job</text>
+</svg>
+<figcaption>Figure 1. Layered architecture. Solid arrows show data flow; dashed arrows show API calls and job triggers.</figcaption>
+</figure>
+
+<h3>Component responsibilities</h3>
+<table>
+  <tr><th style="width:22%">Component</th><th>Responsibility</th><th style="width:24%">Input → Output</th></tr>
+  <tr><td>Frame sampler</td><td>Decodes the video and keeps every <i>k</i>-th frame to hit the target processing rate. Attaches a timestamp to each frame.</td><td>video → (frame, t)</td></tr>
+  <tr><td>Object detector</td><td>Runs YOLOv8 on each frame and filters to the classes we care about with a confidence threshold.</td><td>frame → boxes, classes, scores</td></tr>
+  <tr><td>Tracker</td><td>Associates detections across frames (ByteTrack) so each object keeps one ID. Keeps a short history per track.</td><td>boxes → tracks</td></tr>
+  <tr><td>Scene config</td><td>Defines per-camera zones and lines (polygons in 0–1 coordinates) plus the rule thresholds.</td><td><code>SCENES</code>, <code>CONFIG</code> → pixel geometry</td></tr>
+  <tr><td>Event engine</td><td>Evaluates the rules on track state every frame. Opens, updates and closes events and saves a keyframe snapshot.</td><td>tracks + scene → events</td></tr>
+  <tr><td>Event store</td><td>Per-video JSON files: events, track summaries and a run summary. It is the only interface between the CV and LLM halves.</td><td>events → JSON files</td></tr>
+  <tr><td>Report writer</td><td>Builds a compact event digest, prompts the LLM for a report and checks that every cited event ID and timestamp exists.</td><td>events → Markdown report</td></tr>
+  <tr><td>Query agent</td><td>Runs an LLM tool-use loop. The LLM picks a search tool, the agent executes it, and the LLM answers using only the tool results.</td><td>question → answer + event refs</td></tr>
+  <tr><td>Notebook UI</td><td>Upload, zone preview on the first frame, processing progress, event table with snapshots, annotated video, report and Q&amp;A, and a zip download of all outputs.</td><td>user actions ↔ pipeline</td></tr>
+</table>
+
+<!-- ============ 4 DATA FLOW ============ -->
+<h2>4. Data flow</h2>
+<h3>4.1 Processing a video (offline job)</h3>
+<ol>
+  <li>The operator uploads <code>gate_cam_01.mp4</code> (or points the notebook at a Drive folder) and checks the zones on a preview of the first frame.</li>
+  <li><code>process_video()</code> runs for each clip and prints its progress.</li>
+  <li>For each sampled frame: <b>detect</b> → <b>track</b> → update per-track state (position history, zone membership, dwell time, last-moved time).</li>
+  <li>The event engine checks every rule against the updated state. When a condition has held for its minimum duration, an <b>event opens</b>
+      and a snapshot is saved. When the condition stops, the event <b>closes</b> with an end time.</li>
+  <li>Events, per-track summaries and a run summary are written as JSON, and an annotated MP4 (boxes, IDs, zones) plus event snapshots go to <code>outputs/&lt;clip&gt;/</code>.</li>
+  <li>The event table, report and question answering then run on those files.</li>
+</ol>
+
+<h3>4.2 Answering a question (on demand)</h3>
+<figure>
+<svg viewBox="0 0 720 350" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial">
+  <defs>
+    <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3b4654"/>
+    </marker>
+    <style>
+      .hd { fill: #fff; stroke: #3b4654; stroke-width: 1.2; }
+      .ht { font-size: 12px; font-weight: 700; text-anchor: middle; fill: #1b2430; }
+      .life { stroke: #9aa4b1; stroke-width: 1; stroke-dasharray: 3 3; }
+      .m { stroke: #3b4654; stroke-width: 1.3; }
+      .r { stroke: #3b4654; stroke-width: 1.3; stroke-dasharray: 5 3; }
+      .mt { font-size: 10.5px; fill: #1b2430; text-anchor: middle; }
+      .n { font-size: 10px; font-weight: 700; fill: #0f6e6e; }
+    </style>
+  </defs>
+  <rect class="hd" x="20"  y="6" width="120" height="30" rx="6"/><text class="ht" x="80"  y="26">Notebook</text>
+  <rect class="hd" x="220" y="6" width="120" height="30" rx="6"/><text class="ht" x="280" y="26">Query agent</text>
+  <rect class="hd" x="410" y="6" width="120" height="30" rx="6"/><text class="ht" x="470" y="26">LLM API</text>
+  <rect class="hd" x="580" y="6" width="120" height="30" rx="6"/><text class="ht" x="640" y="26">Event store</text>
+  <line class="life" x1="80"  y1="36" x2="80"  y2="345"/>
+  <line class="life" x1="280" y1="36" x2="280" y2="345"/>
+  <line class="life" x1="470" y1="36" x2="470" y2="345"/>
+  <line class="life" x1="640" y1="36" x2="640" y2="345"/>
+
+  <text class="n" x="6" y="66">1</text><line class="m" x1="80" y1="70" x2="278" y2="70" marker-end="url(#ar2)"/><text class="mt" x="180" y="64">“When did a truck enter Gate B?”</text>
+  <text class="n" x="6" y="102">2</text><line class="m" x1="280" y1="106" x2="468" y2="106" marker-end="url(#ar2)"/><text class="mt" x="375" y="100">question + tool schemas</text>
+  <text class="n" x="6" y="138">3</text><line class="r" x1="470" y1="142" x2="282" y2="142" marker-end="url(#ar2)"/><text class="mt" x="375" y="136">tool call: search_events(class="truck", zone="Gate B")</text>
+  <text class="n" x="6" y="174">4</text><line class="m" x1="280" y1="178" x2="638" y2="178" marker-end="url(#ar2)"/><text class="mt" x="460" y="172">typed filter over the event log (no LLM-written SQL)</text>
+  <text class="n" x="6" y="210">5</text><line class="r" x1="640" y1="214" x2="282" y2="214" marker-end="url(#ar2)"/><text class="mt" x="460" y="208">rows: E14 @ 00:02:31, E19 @ 00:07:05</text>
+  <text class="n" x="6" y="246">6</text><line class="m" x1="280" y1="250" x2="468" y2="250" marker-end="url(#ar2)"/><text class="mt" x="375" y="244">tool result (JSON)</text>
+  <text class="n" x="6" y="282">7</text><line class="r" x1="470" y1="286" x2="282" y2="286" marker-end="url(#ar2)"/><text class="mt" x="375" y="280">answer citing [E14] [E19]</text>
+  <text class="n" x="6" y="318">8</text><line class="r" x1="280" y1="322" x2="82" y2="322" marker-end="url(#ar2)"/><text class="mt" x="180" y="316">answer citing event IDs</text>
+</svg>
+<figcaption>Figure 2. Query sequence. The LLM can only reach the data through typed tools executed by the agent.</figcaption>
+</figure>
+
+<!-- ============ 5 EVENT ENGINE ============ -->
+<h2>5. Event engine</h2>
+<p>Every track keeps a small state record. Each rule is a pure function <code>(track_state, scene, t) → condition true/false</code>.
+  A rule that stays true for <code>min_duration</code> opens an event. <b>Hysteresis</b> (the condition must stay false for
+  <code>cooldown</code> seconds before the event closes) prevents a single tracker flicker from creating duplicate events.
+  The object's position is the <b>bottom-centre of its bounding box</b> (its "feet"), which matches ground-plane zones better than the box centre.</p>
+
+<table>
+  <tr><th style="width:21%">Event type</th><th>Trigger logic</th><th style="width:24%">Default parameters</th></tr>
+  <tr><td><code>ZONE_INTRUSION</code></td><td>A person or vehicle's foot point is inside a zone marked <code>restricted</code>.</td><td>min_duration 1 s</td></tr>
+  <tr><td><code>LOITERING</code></td><td>A person stays inside a zone longer than the threshold while moving less than <i>d</i> px overall.</td><td>dwell 60 s, d = 150 px</td></tr>
+  <tr><td><code>CROWDING</code></td><td>The number of people inside a zone is at or above <i>N</i>.</td><td>N = 10, min_duration 5 s</td></tr>
+  <tr><td><code>LINE_CROSSING</code></td><td>A track's foot point crosses a counting line. The direction comes from the sign of the cross product, and a disallowed direction is flagged as <i>wrong-way</i>.</td><td>per-line allowed direction</td></tr>
+  <tr><td><code>ABANDONED_OBJECT</code></td><td>A backpack, handbag or suitcase is stationary with no person within <i>r</i> px.</td><td>30 s, r = 120 px</td></tr>
+  <tr><td><code>VEHICLE_IN_PED_ZONE</code></td><td>A car, truck, bus or motorcycle is inside a zone marked <code>pedestrian_only</code>.</td><td>min_duration 2 s</td></tr>
+</table>
+
+<h3>Handling tracker noise</h3>
+<p>Real trackers jitter, drop detections, swap IDs and invent short phantom tracks. Six mechanisms keep the rules stable under that noise.
+  Most were added after the simulation study (§11) showed a concrete failure without them, and §11.3 measures each one.</p>
+<ul>
+  <li><b>Hysteresis.</b> An event closes only after its condition has been false for 2 s, so a missed detection does not split one event into many.</li>
+  <li><b>ID stitching.</b> When a new ID appears within 1.5 s and 5% of the frame width of a lost same-class track, it continues that track, so loitering timers survive ID switches.
+      The lost track must have lived at least 10 frames, which stops phantom detections from chaining.</li>
+  <li><b>Position smoothing.</b> Foot points pass through an exponential moving average (α = 0.5) before any geometry test.</li>
+  <li><b>Line dead-band and debounce.</b> A crossing counts only when the smoothed position is at least 1% of the frame width past the line, the track is at least 3 observations old,
+      and the same track has not crossed in the last 2 s.</li>
+  <li><b>Bag-attendance gate.</b> A bag is "attended" only by a person track at least 10 frames old, so a phantom person near a bag cannot reset its abandonment timer.</li>
+  <li><b>Backdated starts.</b> Events carry a <i>since</i> time: an abandoned-bag event starts when the bag was left, not when the 30 s check finally passed.</li>
+</ul>
+
+<div class="two">
+<div>
+<h3>Scene config (<code>configs/scenes/gate_cam_01.json</code>)</h3>
+<pre>{
+  "camera_id": "gate_cam_01",
+  "fps_process": 5,
+  "zones": [
+    { "name": "Gate B",
+      "type": "restricted",
+      "polygon": [[820,410],[1180,400],
+                  [1250,700],[760,710]] },
+    { "name": "Walkway",
+      "type": "pedestrian_only",
+      "polygon": [[100,500],[600,480],
+                  [620,720],[80,720]] }
+  ],
+  "lines": [
+    { "name": "Entry line",
+      "p1": [300,600], "p2": [900,590],
+      "allowed": "up" }
+  ]
+}</pre>
+</div>
+<div>
+<h3>Example event record</h3>
+<pre>{
+  "event_id": "E14",
+  "video_id": "V03",
+  "type": "ZONE_INTRUSION",
+  "object_class": "truck",
+  "track_ids": [57],
+  "zone": "Gate B",
+  "start_ts": 151.2,
+  "end_ts": 163.8,
+  "confidence": 0.81,
+  "snapshot": "outputs/V03/E14.jpg",
+  "details": {
+    "max_objects": 1,
+    "entry_point": [1010, 640]
+  }
+}</pre>
+<p class="muted" style="font-size:9pt">Timestamps are seconds from the start of the video. The UI formats them as HH:MM:SS.
+  The record's <code>confidence</code> is the mean detector confidence over the event window.</p>
+</div>
+</div>
+
+<!-- ============ 6 LLM LAYER ============ -->
+<h2>6. LLM layer</h2>
+<h3>6.1 Report writer</h3>
+<ol>
+  <li><b>Digest.</b> Events are grouped by type and zone, sorted by time and compressed to a compact JSON list
+      (about 30 tokens per event, so even a long video fits in a single prompt).</li>
+  <li><b>Prompt.</b> The system prompt (<code>REPORT_SYSTEM</code>) asks for a fixed structure: <i>Summary · Timeline ·
+      Notable incidents · Statistics · Recommended follow-up</i>. It tells the model to use only facts in the
+      digest, to cite every claim as <code>[E&lt;id&gt;]</code>, and to say "not observed" rather than guess.</li>
+  <li><b>Validate.</b> A post-check extracts every cited ID and timestamp and verifies it against the event log. If a citation is
+      unknown, the report is regenerated once with the error fed back to the model. The final check is stored with the report,
+      so a report that still fails is visibly marked invalid.</li>
+  <li><b>Export.</b> The report is saved as <code>report.md</code> next to its validation result (<code>report_check.json</code>).</li>
+</ol>
+
+<div class="note"><b>Illustrative output format</b> (a format example, not a measured result):<br>
+<i>"Between 00:02:31 and 00:02:43 a truck entered the restricted Gate B zone [E14]. A second truck entry was
+recorded at 00:07:05 [E19]. One person loitered near the walkway for 74 s starting 00:11:20 [E22]. No crowding events
+were observed."</i></div>
+
+<h3>6.2 Query agent tools</h3>
+<table>
+  <tr><th style="width:30%">Tool</th><th>Purpose</th></tr>
+  <tr><td><code>search_events(type?, object_class?, zone?, t_from?, t_to?, limit=20)</code></td><td>Filtered event lookup. This covers most questions.</td></tr>
+  <tr><td><code>count_objects(object_class, zone?, t_from?, t_to?)</code></td><td>Counts unique tracks, e.g. "how many people used the walkway?"</td></tr>
+  <tr><td><code>get_event(event_id)</code></td><td>Full detail for one event, including the snapshot path.</td></tr>
+  <tr><td><code>video_summary(video_id)</code></td><td>Duration, totals per class and totals per event type, used for overview questions.</td></tr>
+</table>
+<p>The agent loop sends the question and tool schemas, executes any <code>&lt;tool_call&gt;</code> blocks it writes, returns the results and repeats
+  (max 6 rounds) until the model produces a final text answer. <code>get_event</code> returns the snapshot path for any cited event.</p>
+
+<h3>6.3 Model choice</h3>
+<table>
+  <tr><th>Task</th><th>Model</th><th>Why</th></tr>
+  <tr><td>Incident reports and chat / tool calls</td><td><code>Qwen/Qwen2.5-14B-Instruct</code> via Hugging Face Transformers, on a Colab A100</td><td>One model for both tasks. Open weights, about 30 GB in bfloat16 so it fits a 40 GB A100 next to YOLO, and trained for tool calling. Decoding is greedy, so runs are repeatable. The notebook picks the largest Qwen2.5 size that fits the GPU: 32B on an 80 GB A100, 7B on an L4, 3B on a T4.</td></tr>
+</table>
+<p><b>Privacy.</b> The LLM runs locally on the same GPU and only ever sees text metadata (event JSON). Nothing is sent to an external service.</p>
+
+<!-- ============ 7 DATA MODEL ============ -->
+<h2>7. Data model</h2>
+<p>Each processed clip produces four records, stored as JSON files in its output folder. The fields below are exactly what the code writes,
+  and they map one-to-one onto database tables if the event log is moved into SQL.</p>
+<div class="schema">
+  <div><b>summary.json</b><ul>
+    <li class="pk">video_id</li><li>file</li><li>duration_s · fps</li><li>resolution · stride</li><li>processing_fps</li><li>model · device</li><li>events_by_type</li></ul></div>
+  <div><b>tracks.json</b><ul>
+    <li class="pk">track_id</li><li class="fk">video_id</li><li>obs</li><li>object_class</li><li>first_ts / last_ts</li><li>zones_visited</li><li>mean_conf</li></ul></div>
+  <div><b>events.json</b><ul>
+    <li class="pk">event_id</li><li class="fk">video_id</li><li>type</li><li>object_class</li><li>track_ids (json)</li><li>zone</li><li>start_ts / end_ts</li><li>confidence</li><li>snapshot</li><li>details</li></ul></div>
+  <div><b>report.md + check</b><ul>
+    <li class="fk">video_id</li><li>markdown</li><li>citations</li><li>unknown_ids</li><li>times_outside_events</li><li>valid · retried</li></ul></div>
+</div>
+<p class="muted" style="font-size:9pt">Each video has many tracks and events and one report. Raw per-frame detections are <i>not</i> stored, because that would be too much data and nothing downstream needs it.</p>
+
+<!-- ============ 8 FOLDER STRUCTURE ============ -->
+<h2>8. Folder &amp; code structure</h2>
+<div class="two">
+<pre>SentryScribe/
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── notebooks/
+│   └── colab_demo.ipynb   # the full system
+├── scripts/
+│   ├── simulate.py        # simulation study
+│   └── build_showcase.py  # results page
+├── tests/
+│   └── test_notebook.py   # 22 logic + 5 e2e checks
+├── results/
+│   ├── real_footage/      # MOT15 + MOT16 run
+│   ├── simulation_metrics.json
+│   ├── simulation_summary.md
+│   ├── replay.json
+│   ├── sim_baseline_vs_full.png
+│   └── sim_f1_by_type.png
+├── showcase/
+│   ├── template.html
+│   └── index.html         # open in any browser
+└── docs/
+    ├── project_structure.pdf
+    ├── viva_prep.pdf
+    └── SentryScribe_CIE3.pptx</pre>
+<div>
+<table style="font-size:9pt">
+  <tr><th>Part</th><th>Owns</th></tr>
+  <tr><td>Notebook §3 <code>CONFIG</code>, <code>SCENES</code></td><td>Model, sampling rate, every rule threshold, and the zones and lines per camera.</td></tr>
+  <tr><td>Notebook <code># [engine]</code></td><td>Geometry (<code>scene_to_px</code>, <code>line_offset</code>), track state and ID stitching (<code>TrackBook</code>, <code>stitch_ids</code>),
+      the rules (<code>analyse_frame</code>), hysteresis (<code>EventEngine</code>) and the frame loop (<code>process_video</code>).</td></tr>
+  <tr><td>Notebook <code># [eval]</code></td><td>Greedy one-to-one event matching, precision, recall, F1 and start-time error.</td></tr>
+  <tr><td>Notebook <code># [llm]</code></td><td>Local model wrapper, event digest, report writer, citation validator, the four tools and the tool-use loop.</td></tr>
+  <tr><td><code>simulate.py</code></td><td>Scene generator, tracker-noise model, independent ground-truth labeller, dev/test study, baseline, ablations, bootstrap CIs.
+      It executes the notebook's own cells, so it tests the shipped code.</td></tr>
+  <tr><td><code>test_notebook.py</code></td><td>Rule engine on scripted tracks, evaluation maths, the validator and tool loop with a fake LLM client,
+      and an end-to-end YOLOv8 + ByteTrack run (<code>--e2e</code>).</td></tr>
+  <tr><td><code>build_showcase.py</code></td><td>Builds the interactive results page from <code>results/</code>.</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ============ 9 TECH STACK ============ -->
+<h2>9. Tech stack</h2>
+<table>
+  <tr><th style="width:22%">Layer</th><th style="width:28%">Technology</th><th>Why this choice</th></tr>
+  <tr><td>Language</td><td>Python 3.10+</td><td>Every CV and LLM library we need is in Python, and the team already knows it.</td></tr>
+  <tr><td>Detection</td><td>Ultralytics YOLOv8 (COCO): <code>x</code> at 1280 px on an A100, <code>m</code> at 960 px on a T4, <code>n</code> at 640 px on a CPU</td><td>Pretrained on all the classes we need, with a one-line API. The notebook picks the size from the GPU memory. On real footage the larger model found more small, distant people (§11.4).</td></tr>
+  <tr><td>Tracking</td><td>ByteTrack (built into Ultralytics)</td><td>Strong multi-object tracking with no extra training. Keeps low-confidence boxes, so IDs survive occlusion better.</td></tr>
+  <tr><td>Video &amp; drawing</td><td>OpenCV</td><td>Decoding, frame sampling, annotation and MP4 writing.</td></tr>
+  <tr><td>Geometry</td><td>Shapely (optional: Roboflow <code>supervision</code>)</td><td>Reliable polygon tests. <code>supervision</code> adds ready-made zone and line counters and annotators.</td></tr>
+  <tr><td>Storage</td><td>JSON files per clip</td><td>Zero setup, human-readable, and easy to zip and download from Colab.</td></tr>
+  <tr><td>LLM</td><td><code>Qwen/Qwen2.5-14B-Instruct</code> via Hugging Face Transformers</td><td>Open weights, runs on a Colab A100, tool calling built into its chat template. Smaller sizes are chosen automatically on smaller GPUs.</td></tr>
+  <tr><td>UI</td><td>Google Colab notebook + static HTML showcase</td><td>Runs on a free GPU with nothing to install. The showcase page works offline in any browser.</td></tr>
+  <tr><td>Results</td><td>matplotlib, NumPy, pandas</td><td>Charts, bootstrap confidence intervals and result tables.</td></tr>
+  <tr><td>Testing</td><td>Self-contained test script</td><td>Rules and the validator are pure functions with fast checks and no video needed; an optional end-to-end run uses real YOLOv8n.</td></tr>
+  <tr><td>Runtime</td><td>Google Colab A100 (a T4 or laptop CPU also works) for inference only</td><td>No training. The A100 holds YOLO and the 14B LLM together.</td></tr>
+</table>
+
+<!-- ============ 10 DATASETS ============ -->
+<h2>10. Datasets &amp; test videos</h2>
+<p>No dataset is used for training. The datasets below are used only to <b>demo and evaluate</b> the system.</p>
+<table>
+  <tr><th style="width:24%">Source</th><th>What it gives us</th><th style="width:26%">Use</th></tr>
+  <tr><td><b>Simulated scenarios</b> (primary)</td><td>Generated by <code>scripts/simulate.py</code>: 40 development + 100 held-out test scenes of 120 s, with intruders, loiterers, line crossers, abandoned bags, crowds and vehicles.
+      The ground truth is known exactly, and tracker noise is added in controlled amounts. No recording or labelling is needed.</td><td>Main quantitative evaluation (§11)</td></tr>
+  <tr><td><b>MOT15 + MOT16 benchmarks</b> (real footage)</td><td>All nine static-camera training sequences, 248 s, with every person boxed by hand in every frame:
+      <code>PETS09-S2L1</code> (elevated surveillance view, 114 s), <code>Venice-2</code>, <code>ADL-Rundle-6</code>, <code>KITTI-17</code>, <code>TUD-Stadtmitte</code>, <code>TUD-Campus</code>,
+      <code>MOT16-02</code>, <code>MOT16-04</code> and <code>MOT16-09</code>. The notebook (step 3b) downloads them, places zones from where people walk, and derives event ground truth from the hand-annotated tracks.
+      Moving-camera sequences are left out, because zones are fixed in the image.</td><td>Real-footage evaluation of person events: detector + tracker + engine (§11.4)</td></tr>
+  <tr><td>Any CCTV-style clip (optional)</td><td>One phone or public clip, run through the Colab notebook with a hand-written <code>ground_truth.csv</code>.</td><td>Live demo of the full pipeline</td></tr>
+  <tr><td>MOT20</td><td>Very crowded scenes from elevated cameras, with the same annotation format as MOT16.</td><td>Extension: a 5 GB download</td></tr>
+  <tr><td>UCF-Crime (a few clips)</td><td>Real CCTV anomaly footage.</td><td>Qualitative demo only (labels are video-level)</td></tr>
+  <tr><td>COCO</td><td>Already baked into the YOLOv8 weights. Not downloaded.</td><td>Pretraining source of the detector</td></tr>
+</table>
+<p class="muted" style="font-size:9pt">Check each dataset's licence before redistributing clips. Recording on campus needs permission from the people filmed, and faces can be blurred in the annotated output.</p>
+
+<!-- ============ 11 EVALUATION ============ -->
+<h2>11. Evaluation</h2>
+<h3>11.1 Method: simulation study with a held-out test set</h3>
+<p>The event engine is evaluated on <b>simulated CCTV scenes</b> generated by <code>scripts/simulate.py</code>. Each scene is 120 s at 10 fps on a 1280×720 frame with the default zones,
+  and contains a random mix of scripted behaviours: intruders, line crossers (30% walking the wrong way), a loiterer, a bag drop, a crowd of 10–13 people,
+  a car reversing into the walkway, and 2–6 background pedestrians.</p>
+<p><b>Ground truth</b> comes from a separate labeller that applies the event definitions to the perfect, noise-free trajectories. The engine instead receives
+  the trajectories degraded with <b>tracker-like noise</b>, and its output is scored with the notebook's <code>evaluate()</code> (an event matches when type and zone agree and the start is within ±3 s).
+  The study runs the exact engine code shipped in the Colab notebook.</p>
+<p><b>Protocol.</b> All tuning used 40 <i>development</i> scenes (seed 7). The configuration was then frozen and run once on
+  100 <i>held-out test</i> scenes (seed 2026, 200 minutes per noise level). 95% confidence intervals come from 2,000 bootstrap resamples of the test scenes.
+  As a reference point, a <b>naive baseline</b> runs the same rules with every noise mechanism of §5 switched off: no cooldown, no stitching, no smoothing, no dead-band, no debounce, no minimum track age and no attendance gate.
+  Reproduce with <code>python scripts/simulate.py</code>. <code>python scripts/build_showcase.py</code> then builds an interactive page (<code>showcase/index.html</code>) with a replay of one test scene.</p>
+<table>
+  <tr><th>Noise level</th><th>Box jitter (σ)</th><th>Missed detections</th><th>ID switches / track / s</th><th>False tracks / frame</th></tr>
+  <tr><td>clean</td><td>0 px</td><td>0%</td><td>0</td><td>0</td></tr>
+  <tr><td>low</td><td>2 px</td><td>5%</td><td>0.005</td><td>0.05</td></tr>
+  <tr><td>medium</td><td>5 px</td><td>15%</td><td>0.02</td><td>0.2</td></tr>
+  <tr><td>high</td><td>10 px</td><td>30%</td><td>0.05</td><td>0.5</td></tr>
+</table>
+
+<h3>11.2 Results on the held-out test set</h3>
+<p>The test set has 571 ground-truth events per noise level.</p>
+<table>
+  <tr><th>Noise</th><th>System</th><th>Predicted</th><th>Precision</th><th>Recall</th><th>F1</th><th>95% CI</th><th>Start err (s)</th></tr>
+  <tr><td>clean</td><td>naive baseline</td><td>571</td><td>1.000</td><td>1.000</td><td><b>1.000</b></td><td>1.000–1.000</td><td>0.00</td></tr>
+  <tr><td>clean</td><td>SentryScribe</td><td>571</td><td>1.000</td><td>1.000</td><td><b>1.000</b></td><td>1.000–1.000</td><td>0.18</td></tr>
+  <tr><td>low</td><td>naive baseline</td><td>1502</td><td>0.284</td><td>0.746</td><td><b>0.411</b></td><td>0.392–0.429</td><td>0.31</td></tr>
+  <tr><td>low</td><td>SentryScribe</td><td>572</td><td>0.998</td><td>1.000</td><td><b>0.999</b></td><td>0.997–1.000</td><td>0.20</td></tr>
+  <tr><td>medium</td><td>naive baseline</td><td>1506</td><td>0.224</td><td>0.590</td><td><b>0.325</b></td><td>0.308–0.340</td><td>0.42</td></tr>
+  <tr><td>medium</td><td>SentryScribe</td><td>575</td><td>0.993</td><td>1.000</td><td><b>0.997</b></td><td>0.993–0.999</td><td>0.24</td></tr>
+  <tr><td>high</td><td>naive baseline</td><td>1327</td><td>0.185</td><td>0.431</td><td><b>0.259</b></td><td>0.242–0.276</td><td>0.27</td></tr>
+  <tr><td>high</td><td>SentryScribe</td><td>575</td><td>0.963</td><td>0.970</td><td><b>0.967</b></td><td>0.952–0.980</td><td>0.33</td></tr>
+</table>
+<figure>
+  <img src="../results/sim_baseline_vs_full.png" style="width:100%">
+  <figcaption>Figure 3. Event F1 on the held-out test set, naive baseline vs SentryScribe, with 95% bootstrap confidence intervals.</figcaption>
+</figure>
+<table>
+  <tr><th>Event type (SentryScribe)</th><th>clean</th><th>low</th><th>medium</th><th>high</th></tr>
+  <tr><td><code>ZONE_INTRUSION</code></td><td>1.000</td><td>1.000</td><td>0.997</td><td>0.991</td></tr>
+  <tr><td><code>LOITERING</code></td><td>1.000</td><td>1.000</td><td>1.000</td><td>0.933</td></tr>
+  <tr><td><code>LINE_CROSSING</code></td><td>1.000</td><td>0.998</td><td>0.993</td><td>0.988</td></tr>
+  <tr><td><code>ABANDONED_OBJECT</code></td><td>1.000</td><td>1.000</td><td>1.000</td><td>0.909</td></tr>
+  <tr><td><code>CROWDING</code></td><td>1.000</td><td>1.000</td><td>1.000</td><td>0.800</td></tr>
+  <tr><td><code>VEHICLE_IN_PED_ZONE</code></td><td>1.000</td><td>1.000</td><td>1.000</td><td>1.000</td></tr>
+</table>
+<p><b>Reading the results.</b> On clean tracks both systems reproduce the ground truth exactly, which confirms the rules implement the event definitions.
+  As soon as noise is added, the naive rules collapse: at medium noise they raise 1506 events for 571 true ones (F1 0.325).
+  SentryScribe stays at F1 0.997 at medium noise and 0.967 at high noise (95% CI 0.952–0.980),
+  with start times within 0.33 s on average.
+  The weakest event type at high noise is <code>CROWDING</code> (F1 0.800).</p>
+
+<h3>11.3 Ablations (held-out test set, medium noise)</h3>
+<p>Each row removes one mechanism from the full system.</p>
+<table>
+  <tr><th>Setting</th><th>Precision</th><th>Recall</th><th>F1</th><th>95% CI</th><th>Δ F1</th></tr>
+  <tr><td>full system</td><td>0.993</td><td>1.000</td><td><b>0.997</b></td><td>0.993–0.999</td><td>–</td></tr>
+  <tr><td>no hysteresis (cooldown 0 s)</td><td>0.291</td><td>0.592</td><td><b>0.390</b></td><td>0.371–0.409</td><td>-0.607</td></tr>
+  <tr><td>no ID stitching</td><td>0.797</td><td>0.872</td><td><b>0.833</b></td><td>0.813–0.851</td><td>-0.164</td></tr>
+  <tr><td>no line dead-band</td><td>0.855</td><td>1.000</td><td><b>0.922</b></td><td>0.908–0.936</td><td>-0.075</td></tr>
+  <tr><td>no bag-attendance gate</td><td>0.979</td><td>0.986</td><td><b>0.983</b></td><td>0.973–0.991</td><td>-0.014</td></tr>
+  <tr><td>no position smoothing</td><td>0.981</td><td>0.998</td><td><b>0.990</b></td><td>0.982–0.996</td><td>-0.007</td></tr>
+  <tr><td>no line debounce</td><td>0.993</td><td>1.000</td><td><b>0.997</b></td><td>0.993–0.999</td><td>+0.000</td></tr>
+  <tr><td>no minimum track age</td><td>0.993</td><td>1.000</td><td><b>0.997</b></td><td>0.993–0.999</td><td>+0.000</td></tr>
+</table>
+<p>The largest single contribution comes from <b>hysteresis</b> (F1 0.390 without it), followed by
+  <b>ID stitching</b> (0.833).
+  Line debounce and minimum track age show no measurable effect on their own at this noise level:
+  the line dead-band already rejects the crossings they were added for. They are kept as cheap safeguards, and this result is reported rather than hidden.</p>
+
+<h3>11.4 Real footage: MOT15 + MOT16</h3>
+<p>The notebook's benchmark mode (step 3b) runs the full system on all nine static-camera training sequences of the public MOT15 and MOT16 benchmarks:
+  248 s of video in which every person in every frame is boxed by hand.</p>
+<table style="font-size:9pt">
+  <tr><th>Sequence</th><th>Scene</th><th>Size, frame rate</th><th>Length</th></tr>
+  <tr><td>PETS09-S2L1</td><td>Elevated surveillance camera over a campus walkway</td><td>768×576, 7 fps</td><td>114 s</td></tr>
+  <tr><td>Venice-2</td><td>Busy public square</td><td>1920×1080, 30 fps</td><td>20 s</td></tr>
+  <tr><td>ADL-Rundle-6</td><td>Pedestrian street</td><td>1920×1080, 30 fps</td><td>17.5 s</td></tr>
+  <tr><td>KITTI-17</td><td>Street corner from a parked car</td><td>1224×370, 10 fps</td><td>14.5 s</td></tr>
+  <tr><td>TUD-Stadtmitte</td><td>Pedestrian zone, eye level</td><td>640×480, 25 fps</td><td>7 s</td></tr>
+  <tr><td>TUD-Campus</td><td>Campus path, eye level</td><td>640×480, 25 fps</td><td>3 s</td></tr>
+  <tr><td>MOT16-02</td><td>Square with many people</td><td>1920×1080, 30 fps</td><td>20 s</td></tr>
+  <tr><td>MOT16-04</td><td>Elevated camera over a busy pedestrian street at night</td><td>1920×1080, 30 fps</td><td>35 s</td></tr>
+  <tr><td>MOT16-09</td><td>Shopping street entrance</td><td>1920×1080, 30 fps</td><td>17.5 s</td></tr>
+</table>
+<ul>
+  <li><b>Zones</b> are placed automatically from where the annotated people walk: a <i>Restricted</i> zone over the least-visited part of the walked area that at least two people enter, a <i>Plaza</i> watch zone over the whole walked area, and an <i>Entry line</i> across its middle. Nobody tunes them by hand.</li>
+  <li><b>Ground truth</b> is the event definitions applied to the hand-annotated tracks, with no detector or tracker involved. The system has to find the same events from raw video, so the comparison measures what real detection and tracking errors cost.</li>
+  <li><b>Event types:</b> only people are annotated, so the benchmark covers intrusion, loitering, line crossing and crowding.</li>
+  <li><b>Short-clip settings:</b> loitering is 10 s, and crowding uses the busiest 10% of each scene's frames, held for 3 s.</li>
+  <li><b>Matching and output:</b> matching is the same as in §11.1. Step 8 writes precision, recall and F1 overall, per event type and per video to <code>metrics.json</code>.</li>
+</ul>
+<figure>
+  <img src="../results/real_footage/snapshot_PETS09-S2L1_E25.jpg" style="width:41%; vertical-align:top">
+  <img src="../results/real_footage/snapshot_MOT16-04_E113.jpg" style="width:55%; vertical-align:top">
+  <figcaption>Figure 4. Event snapshots written by the system on a Colab A100 run. Left: an intrusion into the auto-placed Restricted zone in PETS09-S2L1 (E25).
+    Right: an intrusion in MOT16-04 (E113), a dense night-time street.</figcaption>
+</figure>
+<p><b>What the run showed.</b></p>
+<ul>
+  <li><b>Occlusion in dense crowds</b> is the hardest case. When people stand still behind each other, the detector cannot see them and the tracker gives them a new ID when they reappear, so a long stay is split. Loitering in crowded scenes is the event type this affects most.</li>
+  <li><b>The detector size matters on real footage.</b> Small, distant people in busy squares are found more often by YOLOv8x at 1280 px than by YOLOv8s at 640 px, so the notebook uses the larger model on an A100.</li>
+  <li><b>The incident reports held up.</b> All nine reports from Qwen2.5-14B-Instruct passed the validator, and every cited event ID exists in that video's log.
+      TUD-Campus had no events. Its first draft cited a made-up <code>E0</code>, the validator rejected it, and the retry passed.</li>
+</ul>
+<p>Two bugs found during this run were fixed before the final run.</p>
+<ul>
+  <li><b>Loader bug:</b> the ground-truth loader read a MOT16-only class column in MOT15 files too, where that column holds world coordinates. The loader now reads each benchmark's own layout and stops with an error if a sequence loads no people.</li>
+  <li><b>Scoring gap:</b> a video with no ground-truth events had its false alarms ignored. Every benchmark video is now scored.</li>
+</ul>
+<p>The run's outputs (events, ground truth, scenes, reports and snapshots) are in <code>results/real_footage/</code>.</p>
+
+<h3>11.5 Detector and throughput</h3>
+<ul>
+  <li><b>Detector accuracy</b> is not re-measured on COCO, because the models are used as published. Ultralytics reports COCO val mAP<sub>50-95</sub> of 37.3 (YOLOv8n), 44.9 (YOLOv8s),
+      50.2 (YOLOv8m) and 53.9 (YOLOv8x).</li>
+  <li><b>Colab A100</b> (YOLOv8x at 1280 px, about 10 frames analysed per second of video): the 248 s of benchmark video took 103 s end to end. Every clip ran faster than real time:
+      1.6–1.9× for 1080p clips and 2.6–3.6× for smaller ones.</li>
+  <li><b>Laptop CPU</b> (Intel Core Ultra 9 285H, no GPU, YOLOv8n): <b>≈7.8 processed frames/s</b> on a 1080×810 test clip sampled at 5 fps, i.e. faster than real time at that sampling rate.</li>
+</ul>
+
+<h3>11.6 Limitations</h3>
+<ul>
+  <li>The simulated noise model is simplified. Simulated false detections appear at random places, whereas real ones often persist at one spot (a pole read as a person).
+      Occlusion and perspective are not modelled, so the simulation figures describe noise robustness of the event logic, not real-world accuracy.</li>
+  <li>Real-footage ground truth covers people only. Abandoned bags and vehicles are evaluated in simulation only.</li>
+  <li>Real-footage ground truth is the system's own event definitions applied to hand-drawn tracks. It measures detection and tracking errors, not whether the definitions match what a security guard would call an incident.</li>
+  <li>The benchmark clips are short (3–114 s), so the loitering threshold there is 10 s instead of the 60 s used for real CCTV.</li>
+  <li>The query agent is graded automatically against the event log on seven questions. The grading checks that answers are in English, search every video and cite real events of the right type; it does not check counts or wording.</li>
+</ul>
+
+<!-- ============ 12 BUILD PLAN ============ -->
+<h2>12. Development timeline</h2>
+<p>The project was built in seven phases. Each phase ended with something that ran.</p>
+<table>
+  <tr><th style="width:24%">Phase</th><th>Delivered</th></tr>
+  <tr><td>1 · Design</td><td>Problem definition, event definitions, architecture, data model and evaluation plan (this document).</td></tr>
+  <tr><td>2 · Vision pipeline</td><td>YOLOv8 + ByteTrack frame loop with frame sampling, correct timestamps, annotated video and snapshots.</td></tr>
+  <tr><td>3 · Event engine</td><td>Six event rules on foot points, hysteresis, line direction and wrong-way detection.</td></tr>
+  <tr><td>4 · LLM layer</td><td>Event digest, report writer with citation validator, four query tools and the tool-use loop.</td></tr>
+  <tr><td>5 · Simulation and fixes</td><td>Simulator, noise model and independent labeller. Its failures led to ID stitching, smoothing, the line dead-band, the bag-attendance gate and backdated starts.</td></tr>
+  <tr><td>6 · Evaluation</td><td>Configuration frozen on the dev set, then one run on the held-out test set, with baseline, ablations and confidence intervals (§11).</td></tr>
+  <tr><td>7 · Packaging</td><td>Tests, interactive showcase page, README, design document and presentation.</td></tr>
+</table>
+
+<!-- ============ 13 RISKS ============ -->
+<h2>13. Risks &amp; mitigations</h2>
+<table>
+  <tr><th style="width:28%">Risk</th><th>Mitigation</th></tr>
+  <tr><td>Tracker ID switches split one person into two tracks, so loitering is missed</td><td>Hysteresis (2 s cooldown) plus ID stitching: a new ID within 1.5 s and 5% of frame width of a lost same-class track continues it. Measured gain: +0.164 F1 at medium noise on the held-out test set (§11.3).</td></tr>
+  <tr><td>Slow processing on a CPU</td><td>YOLOv8n at 640 px, sample about 5–10 fps (enough for events that last seconds), and use Colab for long clips.</td></tr>
+  <tr><td>LLM invents events or times</td><td>The LLM sees only the event digest, must cite every claim, and the validator rejects unknown IDs with one automatic retry.</td></tr>
+  <tr><td>Small or far objects missed (e.g. bags)</td><td>A lower class threshold for bags, and YOLOv8x at 1280 px on an A100, which finds more small, distant objects (§11.4). The simulation shows bags are the most noise-sensitive event (§11.2).</td></tr>
+  <tr><td>People hidden in dense crowds</td><td>ID stitching joins short gaps, but long occlusions in crowds still split tracks (§11.4). A re-identification tracker is the next step (§14).</td></tr>
+  <tr><td>A small local model writes a weaker or wrongly cited report</td><td>The validator rejects unknown event IDs and out-of-range times and asks for one rewrite; reports are saved per clip (<code>report.md</code>), so they can be shown without re-running.</td></tr>
+  <tr><td>Privacy concerns</td><td>No identification, anonymous track IDs only, metadata-only LLM calls, and consent for any staged recordings.</td></tr>
+</table>
+
+<!-- ============ 14 STRETCH ============ -->
+<h2>14. Extensions</h2>
+<p>The system is complete as specified. These are natural next steps beyond its scope.</p>
+<ul>
+  <li><b>Database and dashboard</b>: move the per-clip JSON into SQLite (the schema in §7 maps directly) and wrap the notebook flow in a Streamlit app.</li>
+  <li><b>Tracking through occlusion</b>: an appearance-based re-identification tracker (e.g. BoT-SORT with ReID) to keep one ID per person in dense crowds, the main cause of missed loitering on real footage.</li>
+  <li><b>Larger LLM</b>: <code>Qwen2.5-72B-Instruct</code> or similar behind the same <code>generate</code> function, on multiple GPUs or with 4-bit quantisation.</li>
+  <li><b>Live RTSP mode</b>: the same pipeline on a stream, with events pushed to the UI as they open.</li>
+  <li><b>Alerts</b>: a Telegram or e-mail notification on <code>ZONE_INTRUSION</code> and <code>ABANDONED_OBJECT</code>.</li>
+  <li><b>Snapshot captions</b>: a vision-capable LLM describes each event keyframe ("person in a red jacket carrying a box"), with a clear note that the description is model-generated.</li>
+  <li><b>FastAPI service</b>: REST endpoints (<code>POST /videos</code>, <code>GET /events</code>, <code>POST /reports</code>, <code>POST /chat</code>) so other clients can use the system.</li>
+  <li><b>Multi-camera</b>: a camera ID on every row and cross-camera questions ("did the truck at Gate B later appear at the dock?").</li>
+</ul>
+
+</body>
+</html>
