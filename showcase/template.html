@@ -1,0 +1,639 @@
+<title>SentryScribe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a control-room case file. The live replay is the thesis, then pipeline, evidence, design history, LLM grounding, reproduce. */
+:root {
+  --bg: #f4f6f8; --surface: #ffffff; --surface-2: #eef1f4; --ink: #121821; --ink-2: #465160; --muted: #6f7a89;
+  --line: #d9dfe6; --accent: #2a78d6; --accent-ink: #1c5cab; --monitor: #0d131a; --monitor-2: #16202b;
+  --good: #0ca30c; --critical: #d03b3b; --warn: #b57a00;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300;
+  --base: #a3abb6;
+  --seq1: #cde2fb; --seq2: #9ec5f4; --seq3: #6da7ec; --seq4: #3987e5; --seq5: #256abf; --seq6: #184f95;
+  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f141a; --surface: #161c24; --surface-2: #1c2430; --ink: #edf1f5; --ink-2: #b8c1cc; --muted: #8a95a3;
+  --line: #2a333f; --accent: #3987e5; --accent-ink: #86b6ef; --monitor: #090d12; --monitor-2: #121a23;
+  --good: #0ca30c; --critical: #e66767; --warn: #fab219;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300;
+  --base: #5d6673;
+  color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #0f141a; --surface: #161c24; --surface-2: #1c2430; --ink: #edf1f5; --ink-2: #b8c1cc; --muted: #8a95a3;
+  --line: #2a333f; --accent: #3987e5; --accent-ink: #86b6ef; --monitor: #090d12; --monitor-2: #121a23;
+  --good: #0ca30c; --critical: #e66767; --warn: #fab219;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300;
+  --base: #5d6673;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--body); margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+section { padding-block: 56px 8px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(44px, 7vw, 76px); font-weight: 780; font-stretch: 118%; line-height: 0.95; }
+h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 720; font-stretch: 108%; line-height: 1.1; }
+h3 { font-size: 18px; font-weight: 680; font-stretch: 104%; }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font: 600 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 19px; color: var(--ink-2); max-width: 60ch; }
+.sec-head { display: grid; gap: 10px; margin-bottom: 26px; }
+.sec-head p { color: var(--ink-2); }
+code, .mono { font-family: var(--mono); font-size: 0.88em; }
+code { background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+a { color: var(--accent-ink); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- hero ---------- */
+header.hero { padding-block: 44px 20px; }
+.hero-grid { display: grid; gap: 18px; }
+.claim { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 8px; }
+.claim div { display: grid; gap: 2px; }
+.claim b { font: 700 30px/1 var(--display); font-stretch: 110%; font-variant-numeric: tabular-nums; }
+.claim span { font-size: 13px; color: var(--muted); }
+
+/* ---------- control room ---------- */
+.room { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; margin-top: 26px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: transparent; padding: 6px 12px; font-size: 14px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 14px; display: inline-flex; gap: 6px; align-items: center; }
+.btn:hover, .seg button:hover:not([aria-pressed="true"]) { background: var(--surface-2); }
+.clock { font: 500 14px var(--mono); font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.score { margin-left: auto; display: flex; gap: 10px; font: 500 13px var(--mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.score b { color: var(--ink); }
+.monitor { position: relative; background: var(--monitor); aspect-ratio: 16 / 9; max-width: 100%; }
+.monitor canvas { width: 100%; height: 100%; display: block; }
+.scrub { padding: 10px 14px 4px; }
+.scrub input { width: 100%; accent-color: var(--accent); }
+.timeline { padding: 4px 14px 14px; overflow-x: auto; }
+.timeline svg { display: block; width: 100%; min-width: 560px; }
+.tl-key { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); padding: 0 14px 12px; }
+.tl-key i { display: inline-block; width: 18px; height: 6px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+.log { display: flex; flex-direction: column; min-height: 0; max-height: 720px; }
+.log-head { padding: 12px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.log ol { list-style: none; margin: 0; padding: 6px; overflow-y: auto; flex: 1; }
+.log li button { width: 100%; text-align: left; border: 0; background: transparent; padding: 8px 8px; border-radius: 8px; cursor: pointer; display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 2px 10px; align-items: baseline; }
+.log li button:hover { background: var(--surface-2); }
+.log .dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; }
+.log .what { font-weight: 600; font-size: 14px; }
+.log .when { font: 500 12px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.log .sub { grid-column: 2 / 4; font-size: 12.5px; color: var(--ink-2); display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { display: inline-flex; align-items: center; gap: 4px; font: 600 11px/1 var(--mono); letter-spacing: 0.04em; padding: 3px 7px; border-radius: 99px; border: 1px solid currentColor; }
+.pill.ok { color: var(--good); } .pill.bad { color: var(--critical); } .pill.miss { color: var(--warn); }
+.empty { padding: 18px 14px; color: var(--muted); font-size: 14px; }
+
+/* ---------- pipeline ---------- */
+.pipe { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; }
+.pipe li { list-style: none; padding: 18px 16px 18px; display: grid; gap: 6px; align-content: start; position: relative; }
+.pipe li + li { border-left: 1px solid var(--line); }
+.pipe .n { font: 600 12px var(--mono); color: var(--accent-ink); }
+.pipe h3 { font-size: 17px; }
+.pipe p { font-size: 14px; color: var(--ink-2); }
+.pipe .tag { font: 500 11.5px var(--mono); color: var(--muted); }
+.pipe-split { display: flex; justify-content: space-between; font: 600 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 10px; padding: 0 4px; }
+
+/* ---------- results ---------- */
+.grid2 { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 18px 14px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card .note { font-size: 13px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { fill: var(--muted); font: 12px var(--body); }
+.chart .val { fill: var(--ink); font: 600 12px var(--mono); }
+.chart .lab { fill: var(--ink-2); font: 13px var(--body); }
+details.tbl { font-size: 13px; }
+details.tbl summary { cursor: pointer; color: var(--accent-ink); }
+details.tbl table { border-collapse: collapse; width: 100%; margin-top: 8px; font-variant-numeric: tabular-nums; }
+details.tbl th, details.tbl td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); }
+.tbl-wrap { overflow-x: auto; }
+.method { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.method div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; }
+.method b { font: 700 15px var(--display); font-stretch: 106%; }
+.method span { font-size: 14px; color: var(--ink-2); }
+#tip { position: fixed; pointer-events: none; z-index: 20; background: var(--ink); color: var(--bg); font-size: 12.5px; line-height: 1.45; padding: 8px 10px; border-radius: 8px; max-width: 280px; opacity: 0; transition: opacity 0.1s; }
+#tip b { font-weight: 600; }
+
+/* ---------- history ---------- */
+.history { display: grid; gap: 0; border-left: 2px solid var(--line); margin-left: 6px; }
+.history li { list-style: none; position: relative; padding: 0 0 26px 24px; display: grid; gap: 6px; }
+.history li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+.history .v { font: 600 12px var(--mono); color: var(--accent-ink); }
+.history .delta { font: 500 13px var(--mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+/* ---------- llm ---------- */
+.llm { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+pre { margin: 0; background: var(--monitor); color: #d7dee7; border-radius: 8px; padding: 12px 14px; font: 12.5px/1.5 var(--mono); overflow-x: auto; }
+pre .k { color: #86b6ef; } pre .s { color: #9fd8b8; } pre .e { color: #f19c9c; } pre .c { color: #7f8b99; }
+
+/* ---------- reproduce ---------- */
+.repro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.files { display: grid; gap: 8px; font-size: 14px; }
+.files div { display: grid; grid-template-columns: minmax(0, 15em) minmax(0, 1fr); gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.files code { background: none; padding: 0; overflow-wrap: anywhere; }
+footer { padding-block: 40px 56px; color: var(--muted); font-size: 13.5px; }
+footer p { max-width: 90ch; }
+
+@media (max-width: 960px) {
+  .room, .grid2, .repro { grid-template-columns: minmax(0, 1fr); }
+  .log { max-height: 360px; }
+  .pipe { grid-template-columns: minmax(0, 1fr); }
+  .pipe li + li { border-left: 0; border-top: 1px solid var(--line); }
+  .pipe-split { display: none; }
+  .llm, .method { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) { .score { margin-left: 0; } .files div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="eyebrow">Final-year BTech project · Computer vision + LLM</div>
+    <h1>SentryScribe</h1>
+    <p class="lede">CCTV footage in, searchable incidents out. Pretrained YOLOv8 and ByteTrack follow every person, car and bag;
+      a rule engine turns their tracks into timestamped events; an LLM writes the incident report and answers questions, citing only those events.</p>
+    <div class="claim" id="claim"></div>
+  </div>
+</header>
+
+<main>
+<section style="padding-top: 12px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" id="replayeyebrow">Live replay · held-out test scene</div>
+      <h2>Watch the engine work</h2>
+      <p>A two-minute simulated camera feed, played back from the noisy tracks the engine actually received. Boxes outlined in colour belong to an active event.
+        Switch to <b>Naive rules</b> to run the same rules on the same tracks without any noise handling, or change the noise level.
+        The timeline compares every detected event with the ground truth. Click any event to jump to it.</p>
+    </div>
+    <div class="room">
+      <div class="panel">
+        <div class="controls">
+          <button class="btn" id="play" type="button" aria-label="Play">▶ Play</button>
+          <div class="seg" role="group" aria-label="Playback speed" id="speed">
+            <button type="button" data-v="1" aria-pressed="false">1×</button>
+            <button type="button" data-v="4" aria-pressed="true">4×</button>
+            <button type="button" data-v="10" aria-pressed="false">10×</button>
+          </div>
+          <div class="seg" role="group" aria-label="Tracker noise" id="noise">
+            <button type="button" data-v="clean" aria-pressed="false">Clean</button>
+            <button type="button" data-v="medium" aria-pressed="false">Medium</button>
+            <button type="button" data-v="high" aria-pressed="true">High noise</button>
+          </div>
+          <div class="seg" role="group" aria-label="Event logic" id="system">
+            <button type="button" data-v="sentryscribe" aria-pressed="true">SentryScribe</button>
+            <button type="button" data-v="baseline" aria-pressed="false">Naive rules</button>
+          </div>
+          <span class="clock" id="clock">00:00.0 / 02:00</span>
+          <span class="score" id="score"></span>
+        </div>
+        <div class="monitor"><canvas id="cv" width="1280" height="720" aria-label="Simulated camera view with tracked objects and zones"></canvas></div>
+        <div class="scrub"><input id="scrub" type="range" min="0" max="1199" value="0" step="1" aria-label="Scene time"></div>
+        <div class="timeline" id="timeline"></div>
+        <div class="tl-key"><span><i style="background: var(--muted); opacity: .45"></i>ground truth</span><span><i style="background: var(--ink)"></i>detected (colour = event type)</span><span>◆ instant event (line crossing)</span></div>
+      </div>
+      <aside class="panel log" aria-label="Event log">
+        <div class="log-head"><h3>Event log</h3><span class="clock" id="logcount"></span></div>
+        <ol id="log"></ol>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Pipeline</div>
+      <h2>Five stages, two halves</h2>
+      <p>The vision half runs once per video and writes events to a database. The language half runs on demand and can only read those events, so every sentence it writes traces back to a row.</p>
+    </div>
+    <ol class="pipe">
+      <li><span class="n">1</span><h3>Frame sampler</h3><p>Decodes the video and keeps about 10 frames per second.</p><span class="tag">OpenCV</span></li>
+      <li><span class="n">2</span><h3>Detector</h3><p>Finds people, vehicles and bags in each frame, pretrained, no training.</p><span class="tag">YOLOv8 · COCO</span></li>
+      <li><span class="n">3</span><h3>Tracker</h3><p>Links detections over time so each object keeps one ID.</p><span class="tag">ByteTrack</span></li>
+      <li><span class="n">4</span><h3>Event engine</h3><p>Zones, lines and timers turn tracks into six event types, with noise handling.</p><span class="tag">rules + hysteresis</span></li>
+      <li><span class="n">5</span><h3>LLM layer</h3><p>Writes cited incident reports and answers questions through four search tools.</p><span class="tag">Qwen2.5 · local · tool use</span></li>
+    </ol>
+    <div class="pipe-split"><span>Vision half · runs once per video</span><span>Language half · on demand</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Evaluation</div>
+      <h2>Results on scenes the system never saw</h2>
+      <p id="evalintro"></p>
+    </div>
+    <div class="method" id="method"></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Event F1 against a naive baseline</h3>
+        <div class="legend"><span><i style="background: var(--base)"></i>Naive per-frame rules</span><span><i style="background: var(--s1)"></i>SentryScribe</span></div>
+        <div class="chart" id="chartA"></div>
+        <p class="note">Whiskers show 95% confidence intervals from 2,000 bootstrap resamples of the test scenes.</p>
+        <details class="tbl"><summary>Show as table</summary><div class="tbl-wrap" id="tblA"></div></details>
+      </div>
+      <div class="card">
+        <h3>F1 by event type and noise level</h3>
+        <div class="chart" id="chartB"></div>
+        <p class="note">Darker cells are better. Every cell is SentryScribe on the held-out test set.</p>
+        <details class="tbl"><summary>Show as table</summary><div class="tbl-wrap" id="tblB"></div></details>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 16px">
+      <h3>What each mechanism is worth</h3>
+      <p class="note">Each bar removes one mechanism from the full system and re-runs the medium-noise test. The line marks the full system. Line debounce and minimum track age show no effect on their own here, because the dead-band already rejects the crossings they target.</p>
+      <div class="chart" id="chartC"></div>
+      <details class="tbl"><summary>Show as table</summary><div class="tbl-wrap" id="tblC"></div></details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Design history · dev set only</div>
+      <h2>What the simulation caught</h2>
+      <p>Each version was scored on the development scenes. The test scenes above were run once, after the last change.</p>
+    </div>
+    <ol class="history" id="history"></ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">LLM layer</div>
+      <h2>Grounded by construction</h2>
+      <p>The model never sees video. It receives the event log, must cite an event ID for every claim, and a validator checks each citation against the database before a report is accepted.</p>
+    </div>
+    <div class="llm">
+      <div class="card"><h3>1 · What the model receives</h3>
+<pre><span class="c">// one row of the event digest (example)</span>
+{<span class="k">"id"</span>:<span class="s">"E14"</span>, <span class="k">"type"</span>:<span class="s">"ZONE_INTRUSION"</span>,
+ <span class="k">"object"</span>:<span class="s">"truck"</span>, <span class="k">"zone"</span>:<span class="s">"Gate B"</span>,
+ <span class="k">"start"</span>:<span class="s">"00:02:31"</span>, <span class="k">"end"</span>:<span class="s">"00:02:43"</span>,
+ <span class="k">"tracks"</span>:[57], <span class="k">"conf"</span>:0.81}</pre>
+        <p class="note">About 30 tokens per event, so a long video fits in one prompt.</p></div>
+      <div class="card"><h3>2 · What it can call</h3>
+<pre><span class="k">search_events</span>(type, object_class, zone, t_from, t_to)
+<span class="k">count_objects</span>(object_class, zone, t_from, t_to)
+<span class="k">get_event</span>(event_id)
+<span class="k">video_summary</span>(video_id)</pre>
+        <p class="note">Typed, parameterised functions. The model never writes SQL.</p></div>
+      <div class="card"><h3>3 · What gets rejected</h3>
+<pre>"Intrusion at 00:00:07 <span class="e">[E99]</span>."
+<span class="c">→ unknown_ids: ["E99"], valid: false</span>
+<span class="c">→ regenerate once with the error</span>
+"Intrusion at 00:00:07 <span class="s">[E1]</span>."
+<span class="c">→ valid: true</span></pre>
+        <p class="note">Unit-tested, and run on real footage: all nine incident reports passed. Q&amp;A answers are graded automatically against the event log.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Reproduce</div>
+      <h2>Everything on this page comes from two commands</h2>
+    </div>
+    <div class="repro">
+      <div class="card"><h3>Run it</h3>
+<pre><span class="c"># simulation study: dev + held-out test, baseline, ablations, replay</span>
+python scripts/simulate.py
+<span class="c"># rebuild this page from results/</span>
+python scripts/build_showcase.py
+<span class="c"># real video: open in Colab, Runtime → A100 GPU, Run all (benchmark mode, no uploads)</span>
+notebooks/colab_demo.ipynb</pre></div>
+      <div class="card"><h3>Where things are</h3>
+        <div class="files">
+          <div><code>notebooks/colab_demo.ipynb</code><span>The full pipeline: detection, tracking, event engine, reports, chat.</span></div>
+          <div><code>scripts/simulate.py</code><span>Scene generator, noise model, independent ground-truth labeller.</span></div>
+          <div><code>results/simulation_metrics.json</code><span>Every number on this page, with the exact configuration.</span></div>
+          <div><code>docs/project_structure.pdf</code><span>Design document: architecture, data model, folder layout.</span></div>
+        </div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><p id="foot"></p></div>
+</footer>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const R = DATA.replay, M = DATA.metrics;
+const TYPES = ["ZONE_INTRUSION", "LOITERING", "LINE_CROSSING", "ABANDONED_OBJECT", "CROWDING", "VEHICLE_IN_PED_ZONE"];
+const NAMES = { ZONE_INTRUSION: "Zone intrusion", LOITERING: "Loitering", LINE_CROSSING: "Line crossing",
+  ABANDONED_OBJECT: "Abandoned bag", CROWDING: "Crowding", VEHICLE_IN_PED_ZONE: "Vehicle in walkway" };
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const typeColor = t => css("--s" + (TYPES.indexOf(t) + 1));
+const f3 = v => v == null ? "–" : v.toFixed(3);
+const f2 = v => v == null ? "–" : v.toFixed(2);
+const mmss = s => { const m = Math.floor(s / 60), r = s - m * 60; return String(m).padStart(2, "0") + ":" + r.toFixed(1).padStart(4, "0"); };
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const tip = document.getElementById("tip");
+function showTip(html, ev) { tip.innerHTML = html; tip.style.opacity = 1; moveTip(ev); }
+function moveTip(ev) { const x = Math.min(ev.clientX + 14, innerWidth - tip.offsetWidth - 8); tip.style.left = x + "px"; tip.style.top = (ev.clientY + 14) + "px"; }
+function hideTip() { tip.style.opacity = 0; }
+function hover(node, html) { node.addEventListener("pointerenter", e => showTip(html, e)); node.addEventListener("pointermove", moveTip); node.addEventListener("pointerleave", hideTip); }
+
+/* ---------- headline claim + text ---------- */
+const T = M.test.by_noise, S = M.setup;
+document.getElementById("claim").innerHTML = [
+  [f3(T.high.sentryscribe.overall.f1), "event F1 at high tracker noise"],
+  [f3(T.high.baseline.overall.f1), "same scenes, naive per-frame rules"],
+  [f3(T.medium.sentryscribe.overall.f1), "event F1 at medium noise"],
+  [S.test_scenarios * S.scenario_length_s / 60 + " min", "of held-out test footage per condition"],
+].map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
+document.getElementById("evalintro").textContent =
+  `${S.test_scenarios} simulated scenes of ${S.scenario_length_s} s, never used while tuning. Each scene is a random mix of intruders, line crossers, loiterers, bag drops, crowds and cars. ` +
+  `Ground truth comes from an independent labeller applied to the perfect trajectories; the engine sees those trajectories after tracker-like noise is added. ` +
+  `An event counts as found when its type and zone match and it starts within ±${S.tolerance_s} s.`;
+const nl = S.noise_levels;
+document.getElementById("method").innerHTML = ["low", "medium", "high"].map(k =>
+  `<div><b>${k[0].toUpperCase() + k.slice(1)} noise</b><span>${nl[k].jitter} px box jitter, ${Math.round(nl[k].miss * 100)}% missed detections, ` +
+  `${nl[k].idsw} ID switches per track-second, ${nl[k].fp} phantom tracks per frame</span></div>`).join("");
+document.getElementById("foot").innerHTML =
+  `Scope: the numbers above measure the event engine on simulated tracks with a simplified noise model (random phantom detections, no occlusion or perspective). ` +
+  `Occlusion in crowds, which the simulation leaves out, is the hardest case on real footage. Detector accuracy is not re-measured; Ultralytics reports COCO mAP<sub>50-95</sub> 37.3 for YOLOv8n and 53.9 for YOLOv8x. ` +
+  `The end-to-end pipeline ran at about 7.8 frames/s on a laptop CPU, and 1.6–3.6× faster than real time on a Colab A100. Test seed ${S.test_seed}, dev seed ${S.dev_seed}.`;
+
+/* ---------- replay ---------- */
+document.getElementById("replayeyebrow").textContent = `Live replay · ${R.scene}, the most varied of the first 30 test scenes`;
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+const FPS = R.fps, NF = R.variants.clean.frames.length;
+let variant = "high", system = "sentryscribe", t = 0, playing = false, speed = 4, last = 0;
+const scrub = document.getElementById("scrub");
+scrub.max = NF - 1;
+
+function match(events, gt, tol) {
+  // Same greedy rule as the Python evaluate(): closest start first, same type and zone, one-to-one.
+  const pairs = [];
+  events.forEach((e, i) => gt.forEach((g, j) => {
+    const d = Math.abs(e.start - g.start);
+    if (e.type === g.type && (e.zone || "") === (g.zone || "") && d <= tol) pairs.push([d, i, j]);
+  }));
+  pairs.sort((a, b) => a[0] - b[0]);
+  const ue = new Map(), ug = new Map();
+  for (const [d, i, j] of pairs) if (!ue.has(i) && !ug.has(j)) { ue.set(i, j); ug.set(j, i); }
+  return { ev: events.map((e, i) => ({ ...e, ok: ue.has(i) })), gt: gt.map((g, j) => ({ ...g, ok: ug.has(j) })) };
+}
+const MATCHED = {};
+for (const k in R.variants) { MATCHED[k] = {}; for (const n in R.variants[k].systems) MATCHED[k][n] = match(R.variants[k].systems[n].events, R.ground_truth, S.tolerance_s); }
+const cur = () => MATCHED[variant][system];
+
+const ZFILL = { restricted: "rgba(208,59,59,0.16)", pedestrian_only: "rgba(237,161,0,0.14)" };
+const ZLINE = { restricted: "rgba(240,120,120,0.9)", pedestrian_only: "rgba(250,190,70,0.9)" };
+function activeEvents(time) {
+  return cur().ev.filter(e => time >= e.start && time <= (e.end === e.start ? e.start + 1.5 : e.end));
+}
+function draw() {
+  const W = 1280, H = 720, f = Math.max(0, Math.min(NF - 1, Math.floor(t * FPS)));
+  ctx.fillStyle = css("--monitor"); ctx.fillRect(0, 0, W, H);
+  ctx.strokeStyle = "rgba(255,255,255,0.04)"; ctx.lineWidth = 1;
+  for (let x = 0; x <= W; x += 64) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+  for (let y = 0; y <= H; y += 64) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  ctx.font = "600 18px 'IBM Plex Mono', monospace";
+  for (const z of R.zones) {
+    ctx.beginPath(); z.polygon.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath();
+    ctx.fillStyle = ZFILL[z.type] || "rgba(120,170,255,0.12)"; ctx.fill();
+    ctx.setLineDash([10, 8]); ctx.strokeStyle = ZLINE[z.type] || "#8ab"; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = ZLINE[z.type] || "#8ab"; ctx.fillText(z.name.toUpperCase() + (z.type === "restricted" ? " · RESTRICTED" : " · PEDESTRIANS ONLY"), z.polygon[0][0] + 10, z.polygon[0][1] + 26);
+  }
+  for (const l of R.lines) {
+    ctx.strokeStyle = "rgba(200,170,255,0.9)"; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(...l.p1); ctx.lineTo(...l.p2); ctx.stroke();
+    ctx.fillStyle = "rgba(200,170,255,0.95)"; ctx.fillText(l.name.toUpperCase() + " · NO CROSSING " + (l.wrong_way || "").toUpperCase(), l.p1[0] + 6, l.p1[1] - 10);
+  }
+  const act = activeEvents(t), hot = new Map();
+  for (const e of act) for (const id of e.tracks) hot.set(id, e);
+  ctx.font = "500 15px 'IBM Plex Mono', monospace";
+  const alias = R.variants[variant].systems[system].alias || {};
+  for (const [raw, c, x1, y1, x2, y2] of R.variants[variant].frames[f]) {
+    const id = alias[raw] ?? raw;   // show the engine's identity after ID stitching
+    const e = hot.get(id);
+    ctx.lineWidth = e ? 3.5 : 1.6;
+    ctx.strokeStyle = e ? typeColor(e.type) : "rgba(225,232,240,0.75)";
+    ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+    const label = `${R.classes[c]} ${id}`;
+    const w = ctx.measureText(label).width + 10;
+    ctx.fillStyle = e ? typeColor(e.type) : "rgba(225,232,240,0.85)";
+    ctx.fillRect(x1, y1 - 20, w, 20);
+    ctx.fillStyle = e ? "#ffffff" : "#0d131a"; ctx.fillText(label, x1 + 5, y1 - 5);
+  }
+  ctx.font = "600 22px 'IBM Plex Mono', monospace"; ctx.fillStyle = "rgba(255,255,255,0.85)";
+  ctx.fillText("CAM 01 · NORTH GATE", 24, 40);
+  ctx.fillText("T+" + mmss(t), W - 190, 40);
+  ctx.fillStyle = playing ? "#e66767" : "rgba(255,255,255,0.4)"; ctx.beginPath(); ctx.arc(W - 212, 33, 7, 0, 7); ctx.fill();
+  let y = H - 24;
+  ctx.font = "600 17px 'IBM Plex Mono', monospace";
+  for (const e of act.slice(-4)) {
+    const s = `${NAMES[e.type].toUpperCase()} · ${e.zone || "unzoned"} · ${e.ok ? "matches ground truth" : "false alarm"}`;
+    const w = ctx.measureText(s).width + 24;
+    ctx.fillStyle = "rgba(9,13,18,0.82)"; ctx.fillRect(18, y - 22, w, 30);
+    ctx.fillStyle = typeColor(e.type); ctx.fillRect(18, y - 22, 5, 30);
+    ctx.fillStyle = "#ffffff"; ctx.fillText(s, 32, y);
+    y -= 36;
+  }
+  document.getElementById("clock").textContent = mmss(t) + " / " + mmss(R.duration_s);
+  scrub.value = f;
+  drawPlayhead();
+  renderLog();
+}
+
+/* timeline */
+const tl = document.getElementById("timeline");
+const TLW = 1000, LEFT = 150, ROW = 26, TOP = 18;
+let playhead;
+function buildTimeline() {
+  tl.innerHTML = "";
+  const svg = el("svg", { viewBox: `0 0 ${TLW} ${TOP + ROW * TYPES.length + 6}`, role: "img", "aria-label": "Event timeline, ground truth versus detected" }, tl);
+  const x = s => LEFT + (s / R.duration_s) * (TLW - LEFT - 10);
+  for (let s = 0; s <= R.duration_s; s += 30) {
+    el("line", { x1: x(s), x2: x(s), y1: TOP - 4, y2: TOP + ROW * TYPES.length, stroke: css("--line") }, svg);
+    const tx = el("text", { x: x(s), y: 11, "text-anchor": "middle", fill: css("--muted"), "font-size": 11, "font-family": "IBM Plex Mono, monospace" }, svg); tx.textContent = mmss(s).slice(0, 5);
+  }
+  const { ev, gt } = cur();
+  TYPES.forEach((ty, i) => {
+    const y0 = TOP + i * ROW;
+    const lab = el("text", { x: 0, y: y0 + 17, fill: css("--ink-2"), "font-size": 13 }, svg); lab.textContent = NAMES[ty];
+    for (const g of gt.filter(g => g.type === ty)) {
+      const node = g.start === g.end
+        ? el("path", { d: `M${x(g.start)},${y0 + 3} l5,5 l-5,5 l-5,-5 z`, fill: css("--muted"), opacity: 0.55 }, svg)
+        : el("rect", { x: x(g.start), y: y0 + 4, width: Math.max(3, x(g.end) - x(g.start)), height: 7, rx: 3.5, fill: css("--muted"), opacity: 0.45 }, svg);
+      node.style.cursor = "pointer"; node.addEventListener("click", () => seek(g.start - 1));
+      hover(node, `<b>Ground truth · ${NAMES[ty]}</b><br>${g.zone || "unzoned"} · ${mmss(g.start)}${g.end > g.start ? "–" + mmss(g.end) : ""}<br>${g.ok ? "found by the engine" : "missed by the engine"}`);
+    }
+    for (const e of ev.filter(e => e.type === ty)) {
+      const c = typeColor(ty);
+      const node = e.start === e.end
+        ? el("path", { d: `M${x(e.start)},${y0 + 12} l6,6 l-6,6 l-6,-6 z`, fill: c, stroke: css("--surface"), "stroke-width": 1.5 }, svg)
+        : el("rect", { x: x(e.start), y: y0 + 14, width: Math.max(3, x(e.end) - x(e.start)), height: 8, rx: 4, fill: c }, svg);
+      if (!e.ok) el(e.start === e.end ? "circle" : "rect", e.start === e.end ? { cx: x(e.start), cy: y0 + 18, r: 9, fill: "none", stroke: css("--critical"), "stroke-width": 1.5 } :
+        { x: x(e.start) - 2, y: y0 + 12, width: Math.max(3, x(e.end) - x(e.start)) + 4, height: 12, rx: 6, fill: "none", stroke: css("--critical"), "stroke-width": 1.5 }, svg);
+      node.style.cursor = "pointer"; node.addEventListener("click", () => seek(e.start - 1));
+      hover(node, `<b>Detected ${e.id} · ${NAMES[ty]}</b><br>${e.zone || "unzoned"} · ${e.object} ${e.tracks.join(", ")} · ${mmss(e.start)}${e.end > e.start ? "–" + mmss(e.end) : ""}<br>${e.ok ? "matches ground truth" : "false alarm"}`);
+    }
+  });
+  playhead = el("line", { x1: x(0), x2: x(0), y1: TOP - 6, y2: TOP + ROW * TYPES.length + 2, stroke: css("--ink"), "stroke-width": 1.5 }, svg);
+  playhead._x = x;
+}
+function drawPlayhead() { if (playhead) { const px = playhead._x(t); playhead.setAttribute("x1", px); playhead.setAttribute("x2", px); } }
+
+/* log */
+const log = document.getElementById("log");
+let logKey = "";
+function renderLog() {
+  const { ev, gt } = cur();
+  const seen = ev.filter(e => e.start <= t);
+  const missed = gt.filter(g => !g.ok && g.start + S.tolerance_s <= t);
+  const key = variant + system + seen.length + "|" + missed.length;
+  if (key === logKey) return;
+  logKey = key;
+  const items = [
+    ...seen.map(e => ({ s: e.start, html: `<span class="dot" style="background:${typeColor(e.type)}"></span><span class="what">${NAMES[e.type]}</span><span class="when">${mmss(e.start)}</span>
+      <span class="sub"><span>${e.id} · ${e.zone || "unzoned"} · ${e.object} ${e.tracks.join(", ")}${e.details && e.details.wrong_way ? " · wrong way" : ""}</span>${e.ok ? '<span class="pill ok">✓ MATCH</span>' : '<span class="pill bad">✕ FALSE ALARM</span>'}</span>` })),
+    ...missed.map(g => ({ s: g.start, html: `<span class="dot" style="background:transparent;border:2px solid ${typeColor(g.type)}"></span><span class="what">${NAMES[g.type]}</span><span class="when">${mmss(g.start)}</span>
+      <span class="sub"><span>${g.zone || "unzoned"} · in ground truth</span><span class="pill miss">! MISSED</span></span>` })),
+  ].sort((a, b) => b.s - a.s);
+  log.innerHTML = items.length ? items.map(i => `<li><button type="button" data-s="${i.s}">${i.html}</button></li>`).join("")
+    : `<li class="empty">Events appear here as the scene plays. This scene has ${R.ground_truth.length} ground-truth events.</li>`;
+  const tp = ev.filter(e => e.ok).length, fp = ev.length - tp, fn = gt.filter(g => !g.ok).length;
+  const sc = { tp, fp, fn, f1: 2 * tp / Math.max(1, 2 * tp + fp + fn) };
+  document.getElementById("logcount").textContent = `${seen.length} of ${ev.length}`;
+  document.getElementById("score").innerHTML = `<span>found <b>${sc.tp}</b></span><span>false <b>${sc.fp}</b></span><span>missed <b>${sc.fn}</b></span><span>F1 <b>${f3(sc.f1)}</b></span>`;
+}
+log.addEventListener("click", e => { const b = e.target.closest("button[data-s]"); if (b) seek(+b.dataset.s - 1); });
+
+function seek(s) { t = Math.max(0, Math.min(R.duration_s - 0.2, s)); draw(); }
+function loop(now) {
+  if (!playing) return;
+  const dt = Math.max(0, Math.min(0.1, (now - last) / 1000)); last = now;
+  t += dt * speed;
+  if (t >= R.duration_s - 0.2) { t = R.duration_s - 0.2; setPlaying(false); }
+  draw();
+  if (playing) requestAnimationFrame(loop);
+}
+const playBtn = document.getElementById("play");
+function setPlaying(p) {
+  playing = p; playBtn.textContent = p ? "❚❚ Pause" : "▶ Play"; playBtn.setAttribute("aria-label", p ? "Pause" : "Play");
+  if (p) { if (t >= R.duration_s - 0.3) t = 0; last = performance.now(); requestAnimationFrame(loop); }
+  draw();
+}
+playBtn.addEventListener("click", () => setPlaying(!playing));
+scrub.addEventListener("input", () => { t = +scrub.value / FPS; draw(); });
+function segment(id, cb) {
+  const g = document.getElementById(id);
+  g.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return;
+    g.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); cb(b.dataset.v); });
+}
+segment("speed", v => speed = +v);
+segment("noise", v => { variant = v; logKey = ""; buildTimeline(); draw(); });
+segment("system", v => { system = v; logKey = ""; buildTimeline(); draw(); });
+document.addEventListener("keydown", e => { if (e.code === "Space" && e.target === document.body) { e.preventDefault(); setPlaying(!playing); } });
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- charts ---------- */
+const LEVELS = ["clean", "low", "medium", "high"];
+const cap = s => s[0].toUpperCase() + s.slice(1);
+function chartA() {
+  const box = document.getElementById("chartA"); box.innerHTML = "";
+  const W = 560, H = 290, L = 40, B = 34, Tp = 14, plotH = H - B - Tp;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Grouped bar chart of event F1 by noise level for baseline and SentryScribe" }, box);
+  const y = v => Tp + plotH * (1 - v);
+  [0, 0.25, 0.5, 0.75, 1].forEach(v => { el("line", { x1: L, x2: W, y1: y(v), y2: y(v), stroke: css("--line"), "stroke-width": v ? 1 : 1.2 }, svg);
+    const tx = el("text", { x: L - 8, y: y(v) + 4, "text-anchor": "end" }, svg); tx.textContent = v.toFixed(2); });
+  const gw = (W - L) / LEVELS.length, bw = 34;
+  LEVELS.forEach((lv, i) => {
+    const cx = L + gw * i + gw / 2;
+    [["baseline", "--base", -1], ["sentryscribe", "--s1", 1]].forEach(([sys, col, side]) => {
+      const m = T[lv][sys], v = m.overall.f1, ci = m.ci95.f1;
+      const x0 = cx + side * (bw / 2 + 1) - bw / 2;
+      const h = Math.max(0, y(0) - y(v));
+      el("path", { d: `M${x0},${y(0)} V${y(v) + 4} q0,-4 4,-4 h${bw - 8} q4,0 4,4 V${y(0)} z`, fill: css(col) }, svg);
+      el("line", { x1: x0 + bw / 2, x2: x0 + bw / 2, y1: y(ci[0]), y2: y(ci[1]), stroke: css("--ink-2"), "stroke-width": 1.2 }, svg);
+      [ci[0], ci[1]].forEach(c => el("line", { x1: x0 + bw / 2 - 5, x2: x0 + bw / 2 + 5, y1: y(c), y2: y(c), stroke: css("--ink-2"), "stroke-width": 1.2 }, svg));
+      const lab = el("text", { x: x0 + bw / 2, y: Math.min(y(ci[1]), y(v)) - 6, "text-anchor": "middle", class: "val" }, svg); lab.textContent = v.toFixed(2);
+      const hit = el("rect", { x: x0 - 3, y: Tp, width: bw + 6, height: plotH, fill: "transparent" }, svg);
+      hover(hit, `<b>${cap(lv)} noise · ${sys === "baseline" ? "Naive baseline" : "SentryScribe"}</b><br>F1 ${f3(v)} (95% CI ${f3(ci[0])}–${f3(ci[1])})<br>Precision ${f3(m.overall.precision)} · Recall ${f3(m.overall.recall)}<br>${m.n_pred_events} predicted / ${m.n_gt_events} true events`);
+      void h;
+    });
+    const tx = el("text", { x: cx, y: H - 10, "text-anchor": "middle", class: "lab" }, svg); tx.textContent = cap(lv);
+  });
+  document.getElementById("tblA").innerHTML = `<table><tr><th>Noise</th><th>System</th><th>Precision</th><th>Recall</th><th>F1</th><th>95% CI</th><th>Start error</th></tr>` +
+    LEVELS.flatMap(lv => ["baseline", "sentryscribe"].map(sys => { const m = T[lv][sys]; return `<tr><td>${cap(lv)}</td><td>${sys === "baseline" ? "Naive baseline" : "SentryScribe"}</td><td>${f3(m.overall.precision)}</td><td>${f3(m.overall.recall)}</td><td>${f3(m.overall.f1)}</td><td>${f3(m.ci95.f1[0])}–${f3(m.ci95.f1[1])}</td><td>${f2(m.overall.mean_abs_start_err_s)} s</td></tr>`; })).join("") + `</table>`;
+}
+function chartB() {
+  const box = document.getElementById("chartB"); box.innerHTML = "";
+  const W = 480, L = 150, CW = (W - L) / LEVELS.length, RH = 38, H = 26 + RH * TYPES.length;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Heatmap of F1 per event type and noise level" }, box);
+  const steps = ["--seq1", "--seq2", "--seq3", "--seq4", "--seq5", "--seq6"];
+  LEVELS.forEach((lv, j) => { const tx = el("text", { x: L + CW * j + CW / 2, y: 14, "text-anchor": "middle", class: "lab" }, svg); tx.textContent = cap(lv); });
+  TYPES.forEach((ty, i) => {
+    const tx = el("text", { x: 0, y: 26 + RH * i + RH / 2 + 4, class: "lab" }, svg); tx.textContent = NAMES[ty];
+    LEVELS.forEach((lv, j) => {
+      const pt = T[lv].sentryscribe.per_type[ty], v = pt ? pt.f1 : null;
+      const k = v == null ? 0 : Math.max(0, Math.min(5, Math.floor((v - 0.4) / 0.1)));
+      const r = el("rect", { x: L + CW * j + 1, y: 26 + RH * i + 1, width: CW - 2, height: RH - 2, rx: 4, fill: css(steps[k]) }, svg);
+      const t2 = el("text", { x: L + CW * j + CW / 2, y: 26 + RH * i + RH / 2 + 4, "text-anchor": "middle", class: "val" }, svg);
+      t2.textContent = v == null ? "–" : v.toFixed(2);
+      t2.style.fill = k >= 3 ? "#ffffff" : "#121821";
+      hover(r, `<b>${NAMES[ty]} · ${cap(lv)} noise</b><br>F1 ${f3(v)}<br>${pt ? `found ${pt.tp} · false ${pt.fp} · missed ${pt.fn}` : ""}`);
+      t2.style.pointerEvents = "none";
+    });
+  });
+  document.getElementById("tblB").innerHTML = `<table><tr><th>Event type</th>${LEVELS.map(l => `<th>${cap(l)}</th>`).join("")}</tr>` +
+    TYPES.map(ty => `<tr><td>${NAMES[ty]}</td>${LEVELS.map(lv => { const p = T[lv].sentryscribe.per_type[ty]; return `<td>${p ? f3(p.f1) : "–"}</td>`; }).join("")}</tr>`).join("") + `</table>`;
+}
+function chartC() {
+  const box = document.getElementById("chartC"); box.innerHTML = "";
+  const full = T.medium.sentryscribe.overall.f1;
+  const rows = Object.entries(M.test.ablations).map(([k, a]) => ({ k, f1: a.overall.f1, ci: a.ci95.f1, p: a.overall.precision, r: a.overall.recall }))
+    .sort((a, b) => a.f1 - b.f1);
+  const W = 1000, L = 230, RH = 30, TOP = 26, H = TOP + RH * rows.length + 24, x = v => L + (W - L - 190) * v;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "F1 with each mechanism removed" }, box);
+  [0, 0.25, 0.5, 0.75, 1].forEach(v => { el("line", { x1: x(v), x2: x(v), y1: TOP - 4, y2: H - 20, stroke: css("--line") }, svg);
+    const tx = el("text", { x: x(v), y: H - 2, "text-anchor": "middle" }, svg); tx.textContent = v.toFixed(2); });
+  rows.forEach((r, i) => {
+    const y0 = TOP + RH * i;
+    const tx = el("text", { x: L - 12, y: y0 + 17, "text-anchor": "end", class: "lab" }, svg); tx.textContent = r.k;
+    el("path", { d: `M${x(0)},${y0 + 6} H${x(r.f1) - 4} q4,0 4,4 v6 q0,4 -4,4 H${x(0)} z`, fill: css("--base") }, svg);
+    const v = el("text", { x: x(1) + 16, y: y0 + 17, class: "val" }, svg);
+    v.textContent = `${r.f1.toFixed(3)}  (${(r.f1 - full >= 0 ? "+" : "") + (r.f1 - full).toFixed(3)})`;
+    const hit = el("rect", { x: x(0), y: y0, width: W - L, height: RH, fill: "transparent" }, svg);
+    hover(hit, `<b>Without: ${r.k.replace(/^no /, "")}</b><br>F1 ${f3(r.f1)} (95% CI ${f3(r.ci[0])}–${f3(r.ci[1])})<br>Precision ${f3(r.p)} · Recall ${f3(r.r)}<br>Full system: ${f3(full)}`);
+  });
+  el("line", { x1: x(full), x2: x(full), y1: TOP - 10, y2: H - 20, stroke: css("--s1"), "stroke-width": 2 }, svg);
+  const ft = el("text", { x: x(full) - 6, y: TOP - 10, "text-anchor": "end", class: "val" }, svg); ft.textContent = `full system ${full.toFixed(3)}`;
+  document.getElementById("tblC").innerHTML = `<table><tr><th>Removed</th><th>Precision</th><th>Recall</th><th>F1</th><th>95% CI</th></tr>` +
+    `<tr><td>nothing (full system)</td><td>${f3(T.medium.sentryscribe.overall.precision)}</td><td>${f3(T.medium.sentryscribe.overall.recall)}</td><td>${f3(full)}</td><td>${f3(T.medium.sentryscribe.ci95.f1[0])}–${f3(T.medium.sentryscribe.ci95.f1[1])}</td></tr>` +
+    rows.map(r => `<tr><td>${r.k}</td><td>${f3(r.p)}</td><td>${f3(r.r)}</td><td>${f3(r.f1)}</td><td>${f3(r.ci[0])}–${f3(r.ci[1])}</td></tr>`).join("") + `</table>`;
+}
+
+/* ---------- history ---------- */
+document.getElementById("history").innerHTML = DATA.history.map(h =>
+  `<li><span class="v">${h.v}</span><h3>${h.title}</h3><p>${h.text}</p><span class="delta">${h.delta}</span></li>`).join("");
+
+function renderAll() { buildTimeline(); draw(); chartA(); chartB(); chartC(); }
+renderAll();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderAll);
+new MutationObserver(renderAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+if (!reduced) setTimeout(() => setPlaying(true), 600);
+</script>
