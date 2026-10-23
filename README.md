@@ -1,7 +1,7 @@
 # SentryScribe 🎥
 ### Turning CCTV Footage into Searchable Events and Intelligent Incident Reports
 
-SentryScribe is a final-year B.Tech project that transforms CCTV footage into **timestamped, searchable incident logs and AI-generated reports** using computer vision, multi-object tracking, rule-based event detection, and a locally running Large Language Model (LLM).
+SentryScribe is our final-year B.Tech project that transforms CCTV footage into **timestamped, searchable incident logs and AI-generated reports** using computer vision, multi-object tracking, rule-based event detection, and a locally running Large Language Model (LLM).
 
 Instead of manually reviewing hours of surveillance footage, security operators can identify important events, generate incident summaries, and ask natural-language questions about what happened and when.
 
